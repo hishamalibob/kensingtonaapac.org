@@ -9,6 +9,9 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kensingtonaapac.org/">
 <meta property="og:image" content="https://kensingtonaapac.org/banner.jpg">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111513" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 18'%3E%3Crect width='30' height='6' fill='%23c8102e'/%3E%3Crect y='6' width='30' height='6' fill='%230c0c0c'/%3E%3Crect y='12' width='30' height='6' fill='%230a7a3d'/%3E%3C/svg%3E">
 <title>Kensington Elementary AAPAC</title>
 
@@ -51,7 +54,9 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { -webkit-tap-highlight-color: rgba(23, 104, 63, 0.18); }
+section, #cameras { scroll-margin-top: 12px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body { background: var(--paper); color: var(--ink); font-family: var(--font-text); font-size: 18px; line-height: 1.65; }
 p, h1, h2, h3, ul, ol, dl, dd, figure { margin: 0; }
@@ -143,6 +148,11 @@ h2.title { font-family: var(--font-display); font-size: clamp(1.85rem, 1.3rem + 
 .route .arrow { fill: none; stroke: var(--on-deep); stroke-width: 1.6; stroke-linecap: round; opacity: 0.8; }
 .route text { fill: var(--on-deep); font-family: var(--font-hand); font-size: 21px; }
 .route text.small { font-size: 17px; opacity: 0.8; }
+.route-tall text { font-size: 21px; }
+.route-tall text.small { font-size: 16px; }
+.route .hl { fill: var(--gold); font-weight: 400; }
+.route-tall { display: none; }
+.walk-text .backup { font-family: var(--font-ui); font-size: 0.95rem; opacity: 0.9; }
 
 /* Join */
 .join-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 64px; margin-top: 32px; align-items: start; }
@@ -190,12 +200,48 @@ footer .flag { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45); }
   .opening .wrap, .letter-grid, .walk, .join-grid, .help, footer .wrap, .cameras { grid-template-columns: minmax(0, 1fr); gap: 36px; }
   .cameras { gap: 10px; }
   section { padding-block: 60px; }
+  .route { max-width: 520px; }
 }
+/* Phones */
 @media (max-width: 600px) {
   body { font-size: 17px; }
+  section { padding-block: 52px; }
+  .masthead .wrap { padding-block: 16px 14px; gap: 14px; }
+  .mark-sub { font-size: 0.8rem; }
+  .masthead nav { width: 100%; gap: 8px; font-size: 0.9rem; }
+  .masthead nav a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border: 1px solid var(--rule); border-radius: 999px; }
+  .masthead nav a:hover { text-decoration: none; border-color: var(--green); }
+  .opening .wrap { padding-block: 26px 32px; gap: 34px; }
+  .opening .intro { font-size: 1.12rem; margin-top: 18px; }
+  .go { gap: 4px 24px; margin-top: 24px; }
+  .go .primary { flex: 1 1 100%; text-align: center; padding: 15px 22px; }
+  .go a:not(.primary) { padding-block: 11px; }
+  .bulletin .stamp, .footnote, .help .src, .dates-note { font-size: 0.84rem; }
+  .banner figcaption { font-size: 0.88rem; }
+  .letter sup a { padding: 10px 6px; }
+  .cameras { padding: 22px 20px; margin-top: 36px; }
+  .cameras h3 { font-size: 1.3rem; }
+  .walk { gap: 28px; }
+  .route-wide { display: none; }
+  .route-tall { display: block; max-width: 420px; }
+  .contact .row { gap: 8px 12px; }
+  .contact a.addr { padding-block: 6px; }
+  .contact .tel { display: inline-block; padding-block: 8px; }
+  button.copy { min-height: 40px; padding: 0 16px; font-size: 0.86rem; border-radius: 6px; }
+  .dates div { grid-template-columns: 86px minmax(0, 1fr); }
   .qa { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-  .masthead nav { gap: 4px 14px; font-size: 0.86rem; }
-  .cameras { padding: 22px 20px; }
+  .qa h3 { font-size: 1.2rem; }
+  .join-text .welcome { font-size: 1.2rem; line-height: 1.5; }
+  .numbers div { grid-template-columns: minmax(0, 1fr); gap: 10px; padding-block: 16px; }
+  .numbers a.tel { justify-self: start; display: inline-flex; align-items: center; min-height: 42px; padding: 0 18px; border: 1.5px solid var(--green); border-radius: 999px; color: var(--green); }
+  .numbers a.tel::before { content: "Call\00a0"; font-weight: 600; }
+  footer .wrap { padding-block: 36px calc(40px + env(safe-area-inset-bottom, 0px)); }
+}
+/* Small phones */
+@media (max-width: 360px) {
+  .mark-sub { font-size: 0.74rem; letter-spacing: 0; }
+  .opening h1 { font-size: 2rem; }
+  .masthead nav a { padding: 0 12px; }
 }
 </style>
 <style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
@@ -233,7 +279,7 @@ footer .flag { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45); }
         <ul>
           <li><span class="when">Thu, Nov 5 · proposed</span><span class="what">AAPAC family meeting</span><span class="detail">7:00 PM. Details go to families by email.</span></li>
           <li><span class="when">Thu, Nov 12 · 7:00 PM</span><span class="what">Kensington Community Services District board meeting</span><span class="detail">Kensington Community Center, 59 Arlington Avenue, or Zoom. Families will speak during public comment. This board oversees Kensington Police.</span></li>
-          <li><span class="when">Fri, Nov 13 · morning</span><span class="what">Ruby Bridges Walk up the hill to school</span><span class="detail">Start time and meeting spot coming soon.</span></li>
+          <li><span class="when">Fri, Nov 13 · morning</span><span class="what">Ruby Bridges Walk up the hill to school</span><span class="detail">Gather at the Kensington Community Center, 59 Arlington Avenue. Rain backup: Arlington Community Church, 52 Arlington Avenue. Start time coming soon.</span></li>
         </ul>
         <p class="stamp">Updated October 24, 2026</p>
       </div>
@@ -293,19 +339,36 @@ footer .flag { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45); }
         <h2 class="title">This year's Ruby Bridges Walk</h2>
         <p>On November 14, 1960, six-year-old Ruby Bridges walked into the all-white William Frantz Elementary School in New Orleans, escorted by federal marshals. That year she was the school's only Black student.</p>
         <p>On Friday, November 13, we will walk our children up the hill to Kensington Elementary together, so they see a whole community beside them. Families, neighbors and signs are all welcome.</p>
-        <p class="when">Start time and meeting spot coming soon.</p>
+        <p class="when">We'll gather at the Kensington Community Center, 59 Arlington Avenue. Start time coming soon.</p>
+        <p class="backup">Rain backup: Arlington Community Church, 52 Arlington Avenue, which kindly offered its space.</p>
       </div>
-      <svg class="route" viewBox="0 0 480 320" role="img" aria-label="Hand-drawn sketch of the walk route: families gather near Arlington Avenue and walk up the hill to Kensington Elementary on Highland Boulevard.">
+      <svg class="route route-wide" viewBox="0 0 480 344" role="img" aria-label="Hand-drawn sketch of the walk route: families gather at the Kensington Community Center, 59 Arlington Avenue, with Arlington Community Church, 52 Arlington Avenue, as the rain backup, and walk up the hill together to Kensington Elementary, 90 Highland Boulevard.">
         <path class="ridge2" d="M8 268 C 58 266 96 258 140 242 C 182 227 214 206 252 184 C 292 160 320 133 362 112 C 404 92 438 80 474 74"/>
         <path class="ridge" d="M6 265 C 56 262 95 255 138 239 C 180 224 212 203 250 181 C 290 157 318 130 360 109 C 402 89 436 77 472 71"/>
         <path class="path" d="M46 246 C 104 236 152 220 196 198 C 238 177 276 150 316 124 C 352 101 384 86 414 76"/>
         <circle class="start" cx="40" cy="248" r="9"/>
         <path class="school" d="M414 52 L430 40 L446 52 L446 70 L414 70 Z"/>
-        <text x="18" y="292">we gather near Arlington Ave</text>
-        <text class="small" x="18" y="314">exact spot to be confirmed</text>
         <text x="236" y="28">Kensington Elementary</text>
         <text class="small" x="236" y="50">90 Highland Blvd</text>
         <text class="small" x="214" y="252">up the hill together</text>
+        <text x="18" y="290">we gather at the Kensington Community Center</text>
+        <text class="small" x="18" y="312">59 Arlington Ave</text>
+        <text class="small" x="18" y="336"><tspan class="hl">rain backup:</tspan> Arlington Community Church, 52 Arlington Ave</text>
+      </svg>
+      <svg class="route route-tall" viewBox="0 0 340 422" role="img" aria-label="Hand-drawn sketch of the walk route: families gather at the Kensington Community Center, 59 Arlington Avenue, with Arlington Community Church, 52 Arlington Avenue, as the rain backup, and walk up the hill together to Kensington Elementary, 90 Highland Boulevard.">
+        <path class="ridge2" d="M8 276 C 56 273 94 265 134 250 C 174 235 202 214 232 190 C 262 166 286 144 314 128 C 324 122 332 118 338 116"/>
+        <path class="ridge" d="M6 272 C 54 269 92 261 132 246 C 172 231 200 210 230 186 C 260 162 284 140 312 124 C 322 118 330 114 336 112"/>
+        <path class="path" d="M38 256 C 86 248 126 234 162 214 C 198 194 228 170 256 148 C 274 134 290 120 304 108"/>
+        <circle class="start" cx="32" cy="258" r="9"/>
+        <path class="school" d="M292 80 L310 66 L328 80 L328 100 L292 100 Z"/>
+        <text x="328" y="30" text-anchor="end">Kensington Elementary</text>
+        <text class="small" x="328" y="53" text-anchor="end">90 Highland Blvd</text>
+        <text class="small" x="176" y="258">up the hill together</text>
+        <text x="6" y="306">we gather at the</text>
+        <text x="6" y="332">Kensington Community Center</text>
+        <text class="small" x="6" y="356">59 Arlington Ave</text>
+        <text class="small" x="6" y="386"><tspan class="hl">rain backup:</tspan> Arlington Community Church</text>
+        <text class="small" x="6" y="408">52 Arlington Ave</text>
       </svg>
     </div>
   </section>
