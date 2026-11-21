@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kensington Elementary AAPAC//kensingtonaapac.org//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:kcsd-board-2026-12-10@kensingtonaapac.org
+DTSTAMP:20261120T200000Z
+DTSTART:20261211T030000Z
+DTEND:20261211T050000Z
+SUMMARY:Kensington Community Services District board meeting
+LOCATION:Kensington Community Center\, 59 Arlington Avenue\, Kensington\,
+  CA 94707
+DESCRIPTION:Open to the public\, in person or on Zoom. The agenda and Zoom
+  link are posted at kppcsd.org a few days before.
+URL:https://www.kppcsd.org/board-meetings
+END:VEVENT
+END:VCALENDAR

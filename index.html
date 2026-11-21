@@ -1,253 +1,224 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Kensington Elementary's African American Parent Advisory Council: a letter to families, this year's Ruby Bridges Walk, how to join, and what to do if something happens.">
+<title>Kensington Elementary AAPAC | African American Parent Advisory Council</title>
+<meta name="description" content="Kensington Elementary's African American Parent Advisory Council: what we are working on this week, meeting dates, Black History Month plans, photos, and how to get involved.">
+<link rel="canonical" href="https://kensingtonaapac.org/">
+<meta property="og:site_name" content="Kensington Elementary AAPAC">
 <meta property="og:title" content="Kensington Elementary AAPAC">
-<meta property="og:description" content="Kensington Elementary's African American Parent Advisory Council: a letter to families, this year's Ruby Bridges Walk, how to join, and what to do if something happens.">
+<meta property="og:description" content="What we are working on this week, meeting dates, Black History Month plans, photos, and how to get involved.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kensingtonaapac.org/">
-<meta property="og:image" content="https://kensingtonaapac.org/banner.jpg">
+<meta property="og:image" content="https://kensingtonaapac.org/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kensington Elementary AAPAC, African American Parent Advisory Council.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111513" media="(prefers-color-scheme: dark)">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 18'%3E%3Crect width='30' height='6' fill='%23c8102e'/%3E%3Crect y='6' width='30' height='6' fill='%230c0c0c'/%3E%3Crect y='12' width='30' height='6' fill='%230a7a3d'/%3E%3C/svg%3E">
-<title>Kensington Elementary AAPAC</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Figtree:wght@500;600;700&family=Kalam&display=swap">
+<link rel="preload" href="fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/figtree-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/figtree-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/figtree-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* Layout: a community letter. Headline and notices up top, the parent-made banner, a letter with a dated sidebar, one green band for the walk, then joining, questions and help. */
+@font-face { font-family: "Young Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/young-serif-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/source-serif-4-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-style: italic; font-weight: 400; font-display: swap; src: url(fonts/source-serif-4-latin-400-italic.woff2) format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/source-serif-4-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/figtree-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/figtree-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/figtree-latin-700-normal.woff2) format("woff2"); }
 :root {
-  --paper: #ffffff;
-  --tint: #f1f5f2;
-  --ink: #171a19;
-  --soft: #4f5b54;
-  --rule: #d9e0db;
-  --green: #17683f;
-  --green-deep: #0f3d27;
-  --red: #b3261e;
-  --gold: #d99a14;
-  --on-deep: #f4f7f5;
-  --flag-black: #0c0c0c;
-  --flag-edge: transparent;
+  --paper: #ffffff; --tint: #f1f5f2; --ink: #171a19; --soft: #4a5650; --rule: #d9e0db;
+  --green: #17683f; --green-deep: #0f3d27; --gold: #b97f08; --gold-bright: #f0b93a; --on-deep: #f4f7f5;
+  --btn: #17683f; --btn-ink: #ffffff; --flag-black: #0c0c0c; --flag-edge: transparent;
   --font-display: "Young Serif", Georgia, "Times New Roman", serif;
   --font-text: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-ui: "Figtree", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --font-hand: "Kalam", "Comic Neue", "Segoe Print", cursive;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root {
     --paper: #111513; --tint: #18201c; --ink: #edf2ee; --soft: #a9b6ae; --rule: #2b3630;
-    --green: #63c891; --green-deep: #0c2e1d; --red: #ff7d73; --gold: #f2bd45; --on-deep: #f4f7f5;
-    --flag-edge: rgba(255, 255, 255, 0.45);
-    color-scheme: dark;
+    --green: #63c891; --green-deep: #0c2e1d; --gold: #f2bd45; --btn: #63c891; --btn-ink: #0b2417;
+    --flag-edge: rgba(255, 255, 255, 0.45); color-scheme: dark;
   }
 }
-:root[data-theme="dark"] {
-  --paper: #111513; --tint: #18201c; --ink: #edf2ee; --soft: #a9b6ae; --rule: #2b3630;
-  --green: #63c891; --green-deep: #0c2e1d; --red: #ff7d73; --gold: #f2bd45; --on-deep: #f4f7f5;
-  --flag-edge: rgba(255, 255, 255, 0.45);
-  color-scheme: dark;
-}
-
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-body { -webkit-tap-highlight-color: rgba(23, 104, 63, 0.18); }
-section, #cameras { scroll-margin-top: 12px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { background: var(--paper); color: var(--ink); font-family: var(--font-text); font-size: 18px; line-height: 1.65; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-text); font-size: 17px; line-height: 1.6; -webkit-tap-highlight-color: rgba(23, 104, 63, 0.18); }
 p, h1, h2, h3, ul, ol, dl, dd, figure { margin: 0; }
-h1, h2, h3 { font-weight: 400; }
+ul, ol { padding: 0; list-style: none; }
+h1, h2, h3 { font-weight: 400; text-wrap: balance; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: var(--green); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
 a:hover { text-decoration-thickness: 2.5px; }
-:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
-.wrap { width: 100%; max-width: 1060px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
-.skip { position: absolute; left: 12px; top: -60px; background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: 6px; z-index: 20; font-family: var(--font-ui); font-weight: 600; text-decoration: none; }
+:focus-visible { outline: 3px solid var(--gold-bright); outline-offset: 3px; border-radius: 4px; }
+section { scroll-margin-top: 16px; }
+.wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: 12px; top: -80px; background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 8px; z-index: 20; font-family: var(--font-ui); font-weight: 600; text-decoration: none; }
 .skip:focus { top: calc(12px + env(safe-area-inset-top, 0px)); }
 .ui { font-family: var(--font-ui); }
-.tabnum { font-variant-numeric: tabular-nums; }
 
 /* Masthead */
-.masthead .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 28px; padding-block: 20px; }
-.mark { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; }
+.masthead { border-bottom: 1px solid var(--rule); padding-top: calc(14px + env(safe-area-inset-top, 0px)); }
+.masthead .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 24px; }
+.mark { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; padding: 6px 0; }
+.mark-name { display: block; font-family: var(--font-display); font-size: 1.2rem; line-height: 1.1; }
+.mark-sub { display: block; font-family: var(--font-ui); font-size: 0.8125rem; font-weight: 500; color: var(--soft); }
 .flag { display: grid; grid-template-rows: repeat(3, 6px); width: 30px; flex: none; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 1px var(--flag-edge); }
 .flag i { display: block; }
-.flag i:nth-child(1) { background: #c8102e; }
-.flag i:nth-child(2) { background: var(--flag-black); }
-.flag i:nth-child(3) { background: #0a7a3d; }
-.mark-name { display: block; font-family: var(--font-display); font-size: 1.2rem; line-height: 1.1; }
-.mark-sub { display: block; font-family: var(--font-ui); font-size: 0.74rem; font-weight: 500; color: var(--soft); letter-spacing: 0.03em; }
-.masthead nav { display: flex; flex-wrap: wrap; gap: 4px 20px; font-family: var(--font-ui); font-size: 0.92rem; font-weight: 600; }
-.masthead nav a { color: var(--ink); text-decoration: none; }
-.masthead nav a:hover { color: var(--green); text-decoration: underline; }
+.flag i:nth-child(1) { background: #c8102e; } .flag i:nth-child(2) { background: var(--flag-black); } .flag i:nth-child(3) { background: #0a7a3d; }
+.masthead nav { margin: 0 -20px; padding: 0 20px 12px; overflow-x: auto; scrollbar-width: none; max-width: 100vw; }
+.masthead nav::-webkit-scrollbar { display: none; }
+.masthead nav ul { display: flex; gap: 8px; width: max-content; }
+.masthead nav a { display: block; font-family: var(--font-ui); font-weight: 600; font-size: 0.92rem; color: var(--ink); text-decoration: none; padding: 10px 14px; border: 1px solid var(--rule); border-radius: 999px; white-space: nowrap; }
+.masthead nav a:hover { border-color: var(--green); color: var(--green); }
 
 /* Opening */
-.opening .wrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 56px; padding-block: 44px 40px; align-items: start; }
-.opening h1 { font-family: var(--font-display); font-size: clamp(2.25rem, 1.4rem + 3.2vw, 3.8rem); line-height: 1.08; letter-spacing: -0.01em; text-wrap: balance; }
-.opening .intro { font-size: 1.2rem; color: var(--soft); margin-top: 22px; max-width: 34em; }
-.go { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 28px; font-family: var(--font-ui); font-weight: 700; }
-.go .primary { background: var(--green); color: var(--paper); text-decoration: none; padding: 12px 22px; border-radius: 6px; }
-.go .primary:hover { background: var(--green-deep); color: var(--on-deep); }
-.bulletin h2 { font-family: var(--font-ui); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--soft); padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
-.bulletin ul { list-style: none; padding: 0; }
-.bulletin li { padding-block: 14px; border-bottom: 1px solid var(--rule); }
-.bulletin .when { display: block; font-family: var(--font-ui); font-size: 0.86rem; font-weight: 700; color: var(--red); font-variant-numeric: tabular-nums; }
-.bulletin .what { display: block; font-family: var(--font-display); font-size: 1.12rem; line-height: 1.3; margin-top: 2px; }
-.bulletin .detail { display: block; font-size: 0.95rem; color: var(--soft); margin-top: 3px; }
-.cal { display: block; font-family: var(--font-ui); font-size: 0.84rem; font-weight: 600; margin-top: 6px; }
-.cal a { display: inline-block; padding: 4px 0; }
-.bulletin .stamp { font-family: var(--font-ui); font-size: 0.8rem; color: var(--soft); margin-top: 10px; }
-
-.banner { padding-bottom: 8px; }
-.banner img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 4px; }
-.banner figcaption { font-family: var(--font-ui); font-size: 0.86rem; color: var(--soft); margin-top: 10px; }
+.opening { padding: 36px 0 40px; }
+.opening .wrap { display: grid; gap: 28px; }
+h1 { font-family: var(--font-display); font-size: clamp(2.1rem, 7.4vw, 3.5rem); line-height: 1.08; letter-spacing: -0.01em; }
+.intro { margin-top: 16px; font-size: 1.12rem; color: var(--soft); max-width: 34em; }
+.go { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 20px; border-radius: 10px; font-family: var(--font-ui); font-weight: 700; font-size: 1rem; text-decoration: none; text-align: center; border: 2px solid var(--btn); color: var(--green); background: transparent; }
+.btn.primary { background: var(--btn); color: var(--btn-ink); }
+.btn:hover { filter: brightness(1.08); text-decoration: none; }
+.next { background: var(--tint); border: 1px solid var(--rule); border-radius: 16px; padding: 20px; align-self: start; }
+.next h2 { font-family: var(--font-ui); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin-bottom: 6px; }
+.when { display: block; font-family: var(--font-ui); font-weight: 700; font-size: 0.9rem; color: var(--green); font-variant-numeric: tabular-nums; }
+.what { display: block; font-weight: 600; line-height: 1.3; margin-top: 2px; }
+.detail { display: block; color: var(--soft); font-size: 0.96rem; margin-top: 4px; }
+.cal { display: block; font-family: var(--font-ui); font-size: 0.88rem; color: var(--soft); margin-top: 6px; }
+.cal a { display: inline-block; padding: 6px 2px; }
+.next li + li, .dates li + li { border-top: 1px solid var(--rule); margin-top: 14px; padding-top: 14px; }
 
 /* Sections */
-section { padding-block: 76px; }
-h2.title { font-family: var(--font-display); font-size: clamp(1.85rem, 1.3rem + 1.9vw, 2.7rem); line-height: 1.12; text-wrap: balance; max-width: 20em; }
+.block { padding: 48px 0; border-top: 1px solid var(--rule); }
+.eyebrow { font-family: var(--font-ui); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+h2.title { font-family: var(--font-display); font-size: clamp(1.7rem, 5.2vw, 2.35rem); line-height: 1.15; }
+.lede { margin-top: 12px; color: var(--soft); max-width: 40em; }
+.cols { display: grid; gap: 28px; margin-top: 28px; }
+h3 { font-family: var(--font-ui); font-weight: 700; font-size: 1.05rem; line-height: 1.3; }
+.did li { display: grid; grid-template-columns: 4.6em 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--rule); }
+.did li:first-child { border-top: 0; }
+.did .d { font-family: var(--font-ui); font-weight: 700; font-size: 0.9rem; color: var(--green); padding-top: 2px; font-variant-numeric: tabular-nums; }
+.plan { margin-top: 14px; }
+.did { margin-top: 8px; }
+.faq { margin-top: 34px; }
+.card.tip { margin-top: 22px; }
+.plan li { background: var(--tint); border: 1px solid var(--rule); border-radius: 14px; padding: 16px 18px; }
+.plan li + li { margin-top: 12px; }
+.plan .why { display: block; color: var(--soft); font-size: 0.97rem; margin-top: 6px; }
+.plan .why b { font-family: var(--font-ui); font-size: 0.8125rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink); margin-right: 6px; }
+.card { background: var(--tint); border: 1px solid var(--rule); border-radius: 16px; padding: 20px; }
+.card h3 { margin-bottom: 12px; }
+.note { font-size: 0.95rem; color: var(--soft); margin-top: 14px; }
 
-/* Letter */
-.letter-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 64px; align-items: start; margin-top: 32px; }
-.letter { max-width: 640px; display: grid; gap: 20px; }
-.letter .salute { font-style: italic; }
-.letter ul { padding-left: 1.2em; display: grid; gap: 6px; }
-.letter ul li::marker { color: var(--red); }
-.case { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.sign { margin-top: 8px; }
-.sign .names { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.3; display: block; margin-top: 4px; }
-.sign .role { font-family: var(--font-ui); font-size: 0.88rem; color: var(--soft); display: block; }
-.footnote { font-family: var(--font-ui); font-size: 0.8rem; color: var(--soft); border-top: 1px solid var(--rule); padding-top: 10px; }
+/* Black History Month band */
+.band { background: var(--green-deep); color: var(--on-deep); padding: 52px 0; position: relative; }
+.band::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: linear-gradient(90deg, #c8102e 0 33.3%, #0c0c0c 33.3% 66.6%, #0a7a3d 66.6%); }
+.band .eyebrow { color: var(--gold-bright); }
+.band .lede, .band .note { color: var(--on-deep); opacity: 0.88; }
+.band a { color: var(--on-deep); }
+.theme { margin-top: 24px; border-left: 4px solid var(--gold-bright); padding: 4px 0 4px 16px; }
+.theme small { display: block; font-family: var(--font-ui); font-weight: 600; font-size: 0.84rem; letter-spacing: 0.04em; opacity: 0.85; }
+.theme q { display: block; font-family: var(--font-display); font-size: clamp(1.3rem, 4.4vw, 1.75rem); line-height: 1.2; quotes: none; margin-top: 4px; }
+.ideas { display: grid; gap: 10px; margin-top: 24px; }
+.ideas li { border: 1px solid rgba(244, 247, 245, 0.28); border-radius: 12px; padding: 14px 16px; }
+.ideas b { display: block; font-family: var(--font-ui); font-weight: 700; }
+.ideas span { display: block; opacity: 0.88; font-size: 0.97rem; margin-top: 2px; }
+.band .btn { border-color: var(--gold-bright); color: var(--on-deep); }
+.band .btn.primary { background: var(--gold-bright); color: #1c1503; }
 
-.log-wrap h3 { font-family: var(--font-ui); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--soft); margin-bottom: 14px; }
-.log { list-style: none; padding: 0; position: relative; }
-.log::before { content: ""; position: absolute; left: 5px; top: 10px; bottom: 10px; width: 2px; background: var(--rule); }
-.log li { position: relative; padding-left: 26px; padding-bottom: 16px; font-size: 0.98rem; line-height: 1.5; }
-.log li:last-child { padding-bottom: 0; }
-.log li::before { content: ""; position: absolute; left: 0; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--green); }
-.log li.ahead::before { background: var(--paper); border: 2px solid var(--ink); }
-.log time { display: block; font-family: var(--font-ui); font-size: 0.82rem; font-weight: 700; color: var(--soft); font-variant-numeric: tabular-nums; }
+/* Share */
+.ask { display: grid; gap: 10px; margin-top: 20px; counter-reset: q; }
+.ask li { display: flex; gap: 12px; align-items: baseline; }
+.ask li::before { counter-increment: q; content: counter(q); font-family: var(--font-ui); font-weight: 700; font-size: 0.85rem; color: var(--btn-ink); background: var(--btn); border-radius: 999px; width: 1.7em; height: 1.7em; display: inline-flex; align-items: center; justify-content: center; flex: none; transform: translateY(-1px); }
+.contact { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-family: var(--font-ui); }
+.copy { font: inherit; font-weight: 600; font-size: 0.9rem; min-height: 44px; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
 
-.cameras { margin-top: 44px; background: var(--tint); border-radius: 8px; padding: 26px 28px; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 12px 40px; align-items: start; }
-.cameras h3 { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.25; }
-.cameras p { font-size: 1rem; }
-.tel { font-family: var(--font-ui); font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* Photos */
+.gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 26px; }
+.gallery a { display: block; border-radius: 12px; overflow: hidden; background: var(--tint); }
+.gallery picture { display: block; }
+.gallery img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform .3s ease; }
+.gallery a:hover img { transform: scale(1.02); }
+@media (prefers-reduced-motion: reduce) { .gallery img { transition: none; } }
+.gallery figure:first-child { grid-column: 1 / -1; }
+.gallery figcaption { font-size: 0.9rem; color: var(--soft); line-height: 1.4; padding: 8px 2px 4px; }
+.credit { font-family: var(--font-ui); font-size: 0.9rem; color: var(--soft); margin-top: 12px; }
 
-/* Walk band */
-.walk-band { background: var(--green-deep); color: var(--on-deep); }
-.walk-band a { color: var(--on-deep); }
-.walk { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
-.walk-text { display: grid; gap: 18px; max-width: 32em; }
-.walk-text .when { font-family: var(--font-ui); font-weight: 700; color: var(--gold); }
-.route { display: block; width: 100%; max-width: 100%; height: auto; }
-.route .ridge { fill: none; stroke: var(--on-deep); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; opacity: 0.85; }
-.route .ridge2 { fill: none; stroke: var(--on-deep); stroke-width: 1; opacity: 0.3; }
-.route .path { fill: none; stroke: var(--gold); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1 11; }
-.route .start { fill: none; stroke: var(--gold); stroke-width: 3; }
-.route .school { fill: var(--gold); }
-.route .arrow { fill: none; stroke: var(--on-deep); stroke-width: 1.6; stroke-linecap: round; opacity: 0.8; }
-.route text { fill: var(--on-deep); font-family: var(--font-hand); font-size: 21px; }
-.route text.small { font-size: 17px; opacity: 0.8; }
-.route-tall text { font-size: 21px; }
-.route-tall text.small { font-size: 16px; }
-.route .hl { fill: var(--gold); font-weight: 400; }
-.route-tall { display: none; }
-.walk-text .backup { font-family: var(--font-ui); font-size: 0.95rem; opacity: 0.9; }
-
-/* Join */
-.join-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 64px; margin-top: 32px; align-items: start; }
-.join-text { display: grid; gap: 18px; max-width: 34em; }
-.join-text .welcome { font-family: var(--font-display); font-size: 1.35rem; line-height: 1.45; }
-.contact { display: grid; gap: 6px; border-left: 3px solid var(--green); padding-left: 16px; }
-.contact .row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
-.contact a.addr { font-family: var(--font-ui); font-weight: 700; overflow-wrap: anywhere; }
-.contact .who { font-family: var(--font-ui); font-size: 0.88rem; color: var(--soft); }
-button.copy { font-family: var(--font-ui); font-size: 0.8rem; font-weight: 700; color: var(--green); background: transparent; border: 1.5px solid var(--green); border-radius: 4px; padding: 3px 10px; cursor: pointer; }
-button.copy:hover { background: var(--tint); }
-.dates-wrap h3 { font-family: var(--font-ui); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--soft); padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
-.dates div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding-block: 9px; border-bottom: 1px solid var(--rule); font-size: 0.98rem; line-height: 1.45; }
-.dates dt { font-family: var(--font-ui); font-weight: 700; font-size: 0.9rem; font-variant-numeric: tabular-nums; padding-top: 1px; }
-.dates dd { color: var(--soft); }
-.dates-note { font-family: var(--font-ui); font-size: 0.82rem; color: var(--soft); margin-top: 10px; }
-
-/* Questions */
-section.questions { background: var(--tint); }
-.qa { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 56px; margin-top: 32px; }
-.qa div { min-width: 0; }
-.qa h3 { font-family: var(--font-display); font-size: 1.25rem; line-height: 1.3; }
-.qa p { margin-top: 6px; color: var(--soft); font-size: 1.02rem; }
-
-/* Help */
-.help { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: start; }
-.help .lede { color: var(--soft); margin-top: 16px; max-width: 30em; }
-.numbers { border-top: 2px solid var(--ink); }
-.numbers div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding-block: 13px; border-bottom: 1px solid var(--rule); }
-.numbers .what { font-family: var(--font-ui); font-weight: 600; font-size: 0.98rem; }
-.numbers .note { display: block; font-weight: 500; font-size: 0.85rem; color: var(--soft); }
-.numbers a.tel { color: var(--ink); text-decoration: none; }
-.numbers a.tel:hover { color: var(--green); text-decoration: underline; }
-.help .src { font-family: var(--font-ui); font-size: 0.8rem; color: var(--soft); margin-top: 12px; }
+/* About, questions, help */
+.facts { display: grid; gap: 12px; margin-top: 26px; }
+.facts li { border-left: 3px solid var(--green); padding: 2px 0 2px 14px; }
+.facts b { font-family: var(--font-ui); display: block; }
+details { border-top: 1px solid var(--rule); }
+details:last-of-type { border-bottom: 1px solid var(--rule); }
+summary { cursor: pointer; font-family: var(--font-ui); font-weight: 700; padding: 16px 28px 16px 0; min-height: 48px; position: relative; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; position: absolute; right: 4px; top: 12px; font-size: 1.4rem; font-weight: 500; color: var(--green); }
+details[open] summary::after { content: "\2212"; }
+details > div { padding: 0 0 18px; max-width: 42em; }
+details > div p + p, details > div p + ul, details > div ul + p { margin-top: 12px; }
+.letter ul { list-style: disc; padding-left: 1.2em; }
+.letter .sig { font-style: italic; }
+.letter .fn { font-size: 0.88rem; color: var(--soft); }
+.help { display: grid; gap: 10px; margin-top: 24px; }
+.help li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 14px; background: var(--tint); border: 1px solid var(--rule); border-radius: 14px; padding: 12px 14px 12px 18px; }
+.help li > span { flex: 1 1 11em; min-width: 0; }
+.help b { display: block; font-family: var(--font-ui); line-height: 1.3; }
+.help span span { display: block; font-size: 0.93rem; color: var(--soft); }
+.help a { flex: none; font-family: var(--font-ui); font-weight: 700; text-decoration: none; background: var(--btn); color: var(--btn-ink); border-radius: 10px; min-height: 48px; min-width: 5.2em; padding: 10px 14px; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* Footer */
-footer { background: var(--green-deep); color: var(--on-deep); }
-footer .wrap { padding-block: 44px 48px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 32px; }
-footer .mark { color: var(--on-deep); }
-footer .mark-sub { color: var(--on-deep); opacity: 0.75; }
+footer { background: var(--green-deep); color: var(--on-deep); padding: 40px 0 calc(40px + env(safe-area-inset-bottom, 0px)); }
+footer .mark { color: var(--on-deep); } footer .mark-sub { color: var(--on-deep); opacity: 0.8; }
 footer .flag { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45); }
-.foot { display: grid; gap: 8px; font-family: var(--font-ui); font-size: 0.88rem; opacity: 0.9; max-width: 46em; }
-.foot .hope { font-family: var(--font-text); font-style: italic; font-size: 1rem; line-height: 1.5; margin-bottom: 6px; }
+footer .hope { font-style: italic; font-size: 1.1rem; margin-top: 18px; max-width: 34em; }
+footer .fine { font-family: var(--font-ui); font-size: 0.86rem; opacity: 0.85; margin-top: 16px; max-width: 46em; }
+footer a { color: var(--on-deep); }
+[hidden] { display: none !important; }
 
-@media (max-width: 880px) {
-  .opening .wrap, .letter-grid, .walk, .join-grid, .help, footer .wrap, .cameras { grid-template-columns: minmax(0, 1fr); gap: 36px; }
-  .cameras { gap: 10px; }
-  section { padding-block: 60px; }
-  .route { max-width: 520px; }
+@media (max-width: 479px) {
+  .help li { flex-direction: column; align-items: flex-start; }
+  .help li > span { flex: none; }
 }
-/* Phones */
-@media (max-width: 600px) {
-  body { font-size: 17px; }
-  section { padding-block: 52px; }
-  .masthead .wrap { padding-block: 16px 14px; gap: 14px; }
-  .mark-sub { font-size: 0.8rem; }
-  .masthead nav { width: 100%; gap: 8px; font-size: 0.9rem; }
-  .masthead nav a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border: 1px solid var(--rule); border-radius: 999px; }
-  .masthead nav a:hover { text-decoration: none; border-color: var(--green); }
-  .opening .wrap { padding-block: 26px 32px; gap: 34px; }
-  .opening .intro { font-size: 1.12rem; margin-top: 18px; }
-  .go { gap: 4px 24px; margin-top: 24px; }
-  .go .primary { flex: 1 1 100%; text-align: center; padding: 15px 22px; }
-  .go a:not(.primary) { padding-block: 11px; }
-  .bulletin .stamp, .footnote, .help .src, .dates-note { font-size: 0.84rem; }
-  .banner figcaption { font-size: 0.88rem; }
-  .letter sup a { padding: 10px 6px; }
-  .cameras { padding: 22px 20px; margin-top: 36px; }
-  .cameras h3 { font-size: 1.3rem; }
-  .walk { gap: 28px; }
-  .route-wide { display: none; }
-  .route-tall { display: block; max-width: 420px; }
-  .contact .row { gap: 8px 12px; }
-  .contact a.addr { padding-block: 6px; }
-  .contact .tel { display: inline-block; padding-block: 8px; }
-  button.copy { min-height: 40px; padding: 0 16px; font-size: 0.86rem; border-radius: 6px; }
-  .dates div { grid-template-columns: 86px minmax(0, 1fr); }
-  .qa { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-  .qa h3 { font-size: 1.2rem; }
-  .join-text .welcome { font-size: 1.2rem; line-height: 1.5; }
-  .numbers div { grid-template-columns: minmax(0, 1fr); gap: 10px; padding-block: 16px; }
-  .numbers a.tel { justify-self: start; display: inline-flex; align-items: center; min-height: 42px; padding: 0 18px; border: 1.5px solid var(--green); border-radius: 999px; color: var(--green); }
-  .numbers a.tel::before { content: "Call\00a0"; font-weight: 600; }
-  footer .wrap { padding-block: 36px calc(40px + env(safe-area-inset-bottom, 0px)); }
+@media (min-width: 700px) {
+  body { font-size: 18px; }
+  .masthead nav { margin: 0; padding: 0 0 12px; }
+  .cols.two { grid-template-columns: 1fr 1fr; }
+  .ideas { grid-template-columns: 1fr 1fr; }
+  .gallery { grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .gallery figure { grid-column: span 2; }
+  .gallery figure:nth-child(-n+2) { grid-column: span 3; }
+  .help { grid-template-columns: 1fr 1fr; }
+  .block { padding: 64px 0; } .band { padding: 68px 0; }
 }
-/* Small phones */
-@media (max-width: 360px) {
-  .mark-sub { font-size: 0.74rem; letter-spacing: 0; }
-  .opening h1 { font-size: 2rem; }
-  .masthead nav a { padding: 0 12px; }
+@media (min-width: 960px) {
+  .masthead { padding-top: 18px; }
+  .masthead .wrap { flex-wrap: nowrap; }
+  .masthead nav { overflow-x: auto; min-width: 0; }
+  .masthead nav { padding-bottom: 14px; }
+  .opening { padding: 56px 0 64px; }
+  .opening .wrap { grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: start; }
+  .cols.wide { grid-template-columns: 1.3fr 1fr; gap: 48px; }
+  .facts { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+@media print {
+  .masthead nav, .go, .btn, .copy, .cal, .skip { display: none !important; }
+  .band, footer { background: none; color: #000; } details > div { display: block; }
 }
 </style>
-<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Kensington Elementary AAPAC","alternateName":"African American Parent Advisory Council of Kensington Elementary School","url":"https://kensingtonaapac.org/","email":"KensingtonAAPAC@gmail.com","telephone":"+1-510-432-2173","areaServed":"Kensington, California","parentOrganization":{"@type":"EducationalOrganization","name":"Kensington Elementary School, West Contra Costa Unified School District"}}
+</script>
 </head>
 <body>
 
@@ -255,226 +226,276 @@ footer .flag { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45); }
 
 <header class="masthead">
   <div class="wrap">
-    <a class="mark" href="#main" aria-label="Kensington Elementary AAPAC, top of page">
+    <a class="mark" href="#main">
       <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
       <span><span class="mark-name">Kensington AAPAC</span><span class="mark-sub">African American Parent Advisory Council</span></span>
     </a>
     <nav aria-label="Sections">
-      <a href="#letter">Our letter</a>
-      <a href="#walk">The walk</a>
-      <a href="#join">Join</a>
-      <a href="#questions">Questions</a>
-      <a href="#help">If something happens</a>
+      <ul>
+        <li><a href="#this-week">This week</a></li>
+        <li><a href="#dates">Dates</a></li>
+        <li><a href="#february">Black History Month</a></li>
+        <li><a href="#share">Share ideas</a></li>
+        <li><a href="#photos">Photos</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#help">Get help</a></li>
+      </ul>
     </nav>
   </div>
 </header>
 
 <main id="main">
+
   <div class="opening">
     <div class="wrap">
       <div>
         <h1>Working together for every child at Kensington.</h1>
         <p class="intro">We are parents and caregivers who make up Kensington Elementary's African American Parent Advisory Council. We support one another's children, welcome new families, and work alongside the principal and staff so the school hears from Black families early.</p>
-        <p class="go"><a class="primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeUNwGSZ4dnDfI4pCELUJx-YYnWdaFLD6mLoXSEh0PaAme2sg/viewform">Sign up for updates</a><a href="#join">How to join</a><a href="#cameras">Ways to help now</a></p>
+        <p class="go"><a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLScklE4NMaAyp9EZCpc3yJ_Gf9DlY2BzbIJt5dyBtTvbOxYHVw/viewform" target="_blank" rel="noopener">Share your ideas</a><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeUNwGSZ4dnDfI4pCELUJx-YYnWdaFLD6mLoXSEh0PaAme2sg/viewform" target="_blank" rel="noopener">Sign up for updates</a></p>
       </div>
-      <div class="bulletin">
-        <h2>Coming up</h2>
+      <aside class="next" aria-labelledby="next-h">
+        <h2 id="next-h">Coming up</h2>
         <ul>
-          <li><span class="when">Thu, Nov 5 · proposed</span><span class="what">AAPAC family meeting</span><span class="detail">7:00 PM. Details go to families by email.</span></li>
-          <li><span class="when">Thu, Nov 12 · 7:00 PM</span><span class="what">Kensington Community Services District board meeting</span><span class="detail">Kensington Community Center, 59 Arlington Avenue, or Zoom. Families will speak during public comment. This board oversees Kensington Police.</span><span class="cal">Add to calendar: <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Kensington%20Community%20Services%20District%20board%20meeting&amp;dates=20261113T030000Z/20261113T050000Z&amp;details=Families%20will%20speak%20during%20public%20comment.%20In%20person%20at%20the%20Kensington%20Community%20Center%2C%2059%20Arlington%20Avenue%2C%20or%20on%20Zoom%20%28details%20on%20the%20district%20agenda%29.%20https%3A%2F%2Fkensingtonaapac.org&amp;location=Kensington%20Community%20Center%2C%2059%20Arlington%20Avenue%2C%20Kensington%2C%20CA%2094707" target="_blank" rel="noopener">Google</a> · <a href="kcsd-board-2026-11-12.ics" download>Apple or Outlook</a></span></li>
-          <li><span class="when">Fri, Nov 13 · 7:55 AM</span><span class="what">Ruby Bridges Walk up the hill to school</span><span class="detail">Gather at 7:55 AM at the Kensington Community Center, 59 Arlington Avenue. Rain backup: Arlington Community Church, 52 Arlington Avenue.</span><span class="cal">Add to calendar: <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ruby%20Bridges%20Walk&amp;dates=20261113T155500Z/20261113T164500Z&amp;details=Walk%20our%20children%20up%20the%20hill%20to%20Kensington%20Elementary%20together.%20Gather%20at%207%3A55%20AM%20at%20the%20Kensington%20Community%20Center%2C%2059%20Arlington%20Avenue.%20Rain%20backup%3A%20Arlington%20Community%20Church%2C%2052%20Arlington%20Avenue.%20Families%2C%20neighbors%20and%20signs%20are%20all%20welcome.%20https%3A%2F%2Fkensingtonaapac.org&amp;location=Kensington%20Community%20Center%2C%2059%20Arlington%20Avenue%2C%20Kensington%2C%20CA%2094707" target="_blank" rel="noopener">Google</a> · <a href="ruby-bridges-walk-2026.ics" download>Apple or Outlook</a></span></li>
+          <li data-until="2026-12-07"><span class="when">Mon, Dec 7 · 4:00 PM</span><span class="what">AAPAC family playdate</span><span class="detail">Kids play, grown-ups connect. Every family is welcome.</span></li>
+          <li data-until="2026-12-10"><span class="when">Thu, Dec 10 · 7:00 PM</span><span class="what">Community services district board meeting</span><span class="detail">Kensington Community Center, 59 Arlington Avenue, or Zoom.</span></li>
+          <li data-until="2026-12-14"><span class="when">Mon, Dec 14 · 4:00 PM</span><span class="what">AAPAC meets with Principal Jordan</span><span class="detail">The first of four this school year. AAPAC families get details by email.</span></li>
         </ul>
-        <p class="stamp">Updated October 24, 2026</p>
-      </div>
+      </aside>
     </div>
   </div>
 
-  <figure class="banner wrap">
-    <img src="banner.jpg" width="1500" height="500" alt="AAPAC banner reading African American Parent Advisory Council, Kensington Elementary School, in red, black, green and gold.">
-    <figcaption>Our banner, designed by an AAPAC parent. We carried it in the Kensington Parade on October 18.</figcaption>
-  </figure>
-
-  <section id="letter">
+  <section class="block" id="this-week" aria-labelledby="week-h">
     <div class="wrap">
-      <h2 class="title">A letter to Kensington families and neighbors</h2>
-      <div class="letter-grid">
-        <div class="letter">
-          <p class="salute">Dear Kensington families and neighbors,</p>
-          <p>Black students are 24 of the 488 children at Kensington, about 1 in 20 and the smallest share of any school on the district's 2026-27 count.<sup><a href="#source-1" aria-label="Source">1</a></sup> Many of our kids are one of very few Black children in their class. AAPAC is where their families find one another and work together with the school.</p>
-          <p>On the morning of Monday, October 19, staff found a racial slur against Black people written on a school wall. Some parents of kindergartners had to explain that word to their children for the first time. Some families are now asking whether Kensington is the right school for their children. We understand why, and we are working to make sure the answer can be yes.</p>
-          <p>Kensington Police is investigating it as a hate crime, <span class="case">Case No. 2026-0230</span>. As of October 23, there is no suspect. We met with Principal Kim Jordan on October 21 and with the district's school climate team on October 23. Here is what we have asked for:</p>
-          <ul>
-            <li>A full, transparent investigation, with regular updates to families</li>
-            <li>Support for our students and for the staff members most affected</li>
-            <li>Clear, consistent responses when racial harm happens at school</li>
-            <li>A safer campus, including a look at the back gate and cameras</li>
-            <li>Early conversations with AAPAC before decisions that affect Black families</li>
+      <p class="eyebrow">Week of November 16, 2026</p>
+      <h2 class="title" id="week-h">What we did, what comes next, and why</h2>
+      <p class="lede">We post a short update here each week so any family can see where things stand without having been in the room.</p>
+      <div class="cols two wide">
+        <div>
+          <h3>What comes next</h3>
+          <ul class="plan">
+            <li><span class="what">A family playdate, Monday, December 7</span><span class="why"><b>Why</b>Our kids are few, and they are spread across many classrooms. Time together matters as much as any meeting.</span></li>
+            <li><span class="what">Our first meeting with the principal, Monday, December 14</span><span class="why"><b>Why</b>West Contra Costa Unified asks each school's AAPAC to meet through the year and advise the principal and the School Site Council. We want Black families' experiences heard before decisions are made.</span></li>
+            <li><span class="what">Planning Black History Month now</span><span class="why"><b>Why</b>Good guest readers, artists and assemblies book months ahead. We want February shaped by families, so we are asking for ideas first.</span></li>
+            <li><span class="what">Following through on campus safety, and on the harm itself</span><span class="why"><b>Why</b>At the town hall, families asked the district for a decision, a timeline and a written plan for the campus. Families have also asked that the people most affected stay at the center. We are pursuing both, with the district and alongside other Kensington parents.</span></li>
+            <li><span class="what">Showing up at public meetings</span><span class="why"><b>Why</b>Decisions about our campus and our neighborhood are made at the school board and the community services district. Both take public comment.</span></li>
           </ul>
-          <p>We are grateful for the school's partnership, we look forward to the district's written answers, and we will share what we learn. If you can, come to the board meeting on November 12 and walk with us on November 13.</p>
-          <p class="sign">With gratitude,<span class="names">Hisham Ali Bob and Faith Agyekum</span><span class="role">Co-presidents, Kensington Elementary AAPAC</span></p>
-          <p class="footnote" id="source-1">1. WCCUSD Office of African American Student Achievement, <a href="https://docs.google.com/spreadsheets/d/158TWvxcbhj67INkYc9gzjuByc6SGxy4Kw6P9EGFEqjc/edit?usp=sharing">2026-27 Black student count by school</a>. Kensington: 24 of 488, or 5%, the lowest of the 51 schools with figures listed.</p>
         </div>
-        <aside class="log-wrap" aria-labelledby="so-far">
-          <h3 id="so-far">So far this fall</h3>
-          <ol class="log">
-            <li><time datetime="2026-10-18">Oct 18</time>Marched in the Kensington Parade with our banner.</li>
-            <li><time datetime="2026-10-19">Oct 19</time>Staff found the slur on a school wall.</li>
-            <li><time datetime="2026-10-20">Oct 20</time>About 15 parents, staff and neighbors met that Tuesday evening.</li>
-            <li><time datetime="2026-10-21">Oct 21</time>Met with Principal Jordan and gave her families' questions in writing.</li>
-            <li><time datetime="2026-10-21">Oct 21 and 22</time>Asked Kensington Police, the District Attorney, school board trustees, civil rights groups and local congregations for support.</li>
-            <li><time datetime="2026-10-23">Oct 23</time>Met with the district's school climate team.</li>
-            <li class="ahead"><time datetime="2026-11-12">Nov 12</time>Families speak at the board meeting.</li>
-            <li class="ahead"><time datetime="2026-11-13">Nov 13</time>Ruby Bridges Walk.</li>
-          </ol>
-        </aside>
-      </div>
-
-      <div class="cameras" id="cameras">
-        <h3>Live or park near the school? Please check your cameras.</h3>
-        <p>Look at doorbell, home and car cameras for Friday, October 16, through Monday morning, October 19, and save anything now, before it records over. Many newer cars record while parked. If you find anything, saw anything, or heard someone talk about it, call Kensington Police at <a class="tel" href="tel:+15105257573">(510) 525-7573</a> and give Case No. 2026-0230. Tips can be anonymous.</p>
+        <div>
+          <h3>What we did</h3>
+          <ul class="did">
+            <li><span class="d">Nov 20</span><span>Families chose Monday, December 7 for our next playdate.</span></li>
+            <li><span class="d">Nov 19</span><span>Principal Jordan confirmed four AAPAC meetings for this school year.</span></li>
+            <li><span class="d">Nov 17</span><span>The district held a town hall on October's incident and campus safety. <a href="https://www.youtube.com/watch?v=2A9MM5MDBXY" target="_blank" rel="noopener">Watch the recording</a>.</span></li>
+            <li><span class="d">Nov 13</span><span>Students, families, neighbors and local leaders walked up the hill together for the Ruby Bridges Walk. <a href="#photos">See the photos</a>.</span></li>
+            <li><span class="d">Nov 12</span><span>Families spoke at the community services district board meeting.</span></li>
+            <li><span class="d">Oct 23</span><span>Met with the district's school climate team.</span></li>
+            <li><span class="d">Oct 21</span><span>Met with Principal Jordan and gave her families' questions in writing.</span></li>
+            <li><span class="d">Oct 18</span><span>Marched in the Kensington Parade with our banner.</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="walk-band" id="walk">
-    <div class="wrap walk">
-      <div class="walk-text">
-        <h2 class="title">This year's Ruby Bridges Walk</h2>
-        <p>On November 14, 1960, six-year-old Ruby Bridges walked into the all-white William Frantz Elementary School in New Orleans, escorted by federal marshals. That year she was the school's only Black student.</p>
-        <p>On Friday, November 13, we will walk our children up the hill to Kensington Elementary together, so they see a whole community beside them. Families, neighbors and signs are all welcome.</p>
-        <p class="when">We'll gather at 7:55 AM at the Kensington Community Center, 59 Arlington Avenue, and walk up the hill together.</p>
-        <p class="backup">Rain backup: Arlington Community Church, 52 Arlington Avenue, which kindly offered its space.</p>
-        <p class="cal">Add to calendar: <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ruby%20Bridges%20Walk&amp;dates=20261113T155500Z/20261113T164500Z&amp;details=Walk%20our%20children%20up%20the%20hill%20to%20Kensington%20Elementary%20together.%20Gather%20at%207%3A55%20AM%20at%20the%20Kensington%20Community%20Center%2C%2059%20Arlington%20Avenue.%20Rain%20backup%3A%20Arlington%20Community%20Church%2C%2052%20Arlington%20Avenue.%20Families%2C%20neighbors%20and%20signs%20are%20all%20welcome.%20https%3A%2F%2Fkensingtonaapac.org&amp;location=Kensington%20Community%20Center%2C%2059%20Arlington%20Avenue%2C%20Kensington%2C%20CA%2094707" target="_blank" rel="noopener">Google</a> · <a href="ruby-bridges-walk-2026.ics" download>Apple or Outlook</a></p>
-      </div>
-      <svg class="route route-wide" viewBox="0 0 480 344" role="img" aria-label="Hand-drawn sketch of the walk route: families gather at the Kensington Community Center, 59 Arlington Avenue, with Arlington Community Church, 52 Arlington Avenue, as the rain backup, and walk up the hill together to Kensington Elementary, 90 Highland Boulevard.">
-        <path class="ridge2" d="M8 268 C 58 266 96 258 140 242 C 182 227 214 206 252 184 C 292 160 320 133 362 112 C 404 92 438 80 474 74"/>
-        <path class="ridge" d="M6 265 C 56 262 95 255 138 239 C 180 224 212 203 250 181 C 290 157 318 130 360 109 C 402 89 436 77 472 71"/>
-        <path class="path" d="M46 246 C 104 236 152 220 196 198 C 238 177 276 150 316 124 C 352 101 384 86 414 76"/>
-        <circle class="start" cx="40" cy="248" r="9"/>
-        <path class="school" d="M414 52 L430 40 L446 52 L446 70 L414 70 Z"/>
-        <text x="236" y="28">Kensington Elementary</text>
-        <text class="small" x="236" y="50">90 Highland Blvd</text>
-        <text class="small" x="214" y="252">up the hill together</text>
-        <text x="18" y="290">we gather at the Kensington Community Center</text>
-        <text class="small" x="18" y="312">59 Arlington Ave</text>
-        <text class="small" x="18" y="336"><tspan class="hl">rain backup:</tspan> Arlington Community Church, 52 Arlington Ave</text>
-      </svg>
-      <svg class="route route-tall" viewBox="0 0 340 422" role="img" aria-label="Hand-drawn sketch of the walk route: families gather at the Kensington Community Center, 59 Arlington Avenue, with Arlington Community Church, 52 Arlington Avenue, as the rain backup, and walk up the hill together to Kensington Elementary, 90 Highland Boulevard.">
-        <path class="ridge2" d="M8 276 C 56 273 94 265 134 250 C 174 235 202 214 232 190 C 262 166 286 144 314 128 C 324 122 332 118 338 116"/>
-        <path class="ridge" d="M6 272 C 54 269 92 261 132 246 C 172 231 200 210 230 186 C 260 162 284 140 312 124 C 322 118 330 114 336 112"/>
-        <path class="path" d="M38 256 C 86 248 126 234 162 214 C 198 194 228 170 256 148 C 274 134 290 120 304 108"/>
-        <circle class="start" cx="32" cy="258" r="9"/>
-        <path class="school" d="M292 80 L310 66 L328 80 L328 100 L292 100 Z"/>
-        <text x="328" y="30" text-anchor="end">Kensington Elementary</text>
-        <text class="small" x="328" y="53" text-anchor="end">90 Highland Blvd</text>
-        <text class="small" x="176" y="258">up the hill together</text>
-        <text x="6" y="306">we gather at the</text>
-        <text x="6" y="332">Kensington Community Center</text>
-        <text class="small" x="6" y="356">59 Arlington Ave</text>
-        <text class="small" x="6" y="386"><tspan class="hl">rain backup:</tspan> Arlington Community Church</text>
-        <text class="small" x="6" y="408">52 Arlington Ave</text>
-      </svg>
-    </div>
-  </section>
-
-  <section id="join">
+  <section class="block" id="dates" aria-labelledby="dates-h">
     <div class="wrap">
-      <h2 class="title">How to join</h2>
-      <div class="join-grid">
-        <div class="join-text">
-          <p class="welcome">AAPAC is open to every Kensington family. We center Black, African, Caribbean and multiracial students and their families, and parents of every background are members alongside us. Grandparents, caregivers, staff and neighbors are welcome too. No experience needed.</p>
-          <p>To join, fill out our <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUNwGSZ4dnDfI4pCELUJx-YYnWdaFLD6mLoXSEh0PaAme2sg/viewform">short sign-up form</a>, or email us your name and how you are connected to Kensington. We will add you to our updates and send details for the next meeting.</p>
+      <p class="eyebrow">Dates</p>
+      <h2 class="title" id="dates-h">Meetings worth putting on your calendar</h2>
+      <div class="cols two">
+        <div class="card">
+          <h3>AAPAC</h3>
+          <ul class="dates">
+            <li data-until="2026-12-07"><span class="when">Mon, Dec 7 · 4:00 PM</span><span class="what">Family playdate</span><span class="detail">Kids play, grown-ups connect. Details go to AAPAC families, and anyone is welcome to write to us for them.</span></li>
+            <li data-until="2026-12-14"><span class="when">Mon, Dec 14 · 4:00 to 5:00 PM</span><span class="what">AAPAC meeting with Principal Jordan</span><span class="detail">Kensington Elementary library. Details go to AAPAC families by email.</span></li>
+            <li><span class="when">Mondays · 4:00 to 5:00 PM</span><span class="what">Three more meetings with the principal</span><span class="detail">January 25, March 15 and May 10, in the school library.</span><span class="cal"><a href="aapac-meetings-2026-27.ics" download>Add all four meetings to your calendar</a></span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Public meetings</h3>
+          <ul class="dates">
+            <li data-until="2026-12-10"><span class="when">Thu, Dec 10 · 7:00 PM</span><span class="what">Kensington Community Services District board</span><span class="detail">Kensington Community Center, 59 Arlington Avenue, or Zoom. This board oversees Kensington Police and the park beside our school, and it meets on the second Thursday of each month. <a href="https://www.kppcsd.org/board-meetings" target="_blank" rel="noopener">Agendas and Zoom links</a>.</span><span class="cal">Add to calendar: <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Kensington%20Community%20Services%20District%20board%20meeting&amp;dates=20261211T030000Z/20261211T050000Z&amp;details=Open%20to%20the%20public%2C%20in%20person%20or%20on%20Zoom.%20Agenda%20and%20Zoom%20link%3A%20https%3A%2F%2Fwww.kppcsd.org%2Fboard-meetings&amp;location=Kensington%20Community%20Center%2C%2059%20Arlington%20Avenue%2C%20Kensington%2C%20CA%2094707" target="_blank" rel="noopener">Google</a> · <a href="kcsd-board-2026-12-10.ics" download>Apple or Outlook</a></span></li>
+            <li><span class="when">Evenings · 6:30 PM</span><span class="what">West Contra Costa Unified Board of Education</span><span class="detail">Lovonya DeJean Middle School, 3400 Macdonald Avenue, Richmond. Anyone may speak during public comment. <a href="https://www.wccusd.net/about-us/our-board/our-board-home" target="_blank" rel="noopener">Dates and agendas</a> are on the district's site.</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">If childcare, a ride or interpretation would help you take part, tell us and we will work on it.</p>
+    </div>
+  </section>
+
+  <section class="band" id="february" aria-labelledby="feb-h">
+    <div class="wrap">
+      <p class="eyebrow">February 2027</p>
+      <h2 class="title" id="feb-h">Black History Month, planned with families</h2>
+      <p class="lede">We are starting early so February belongs to the whole school. Nothing is booked yet. These are the ideas on the table, and we will bring families' thoughts to Principal Jordan in December.</p>
+      <p class="theme"><small>This year's national theme</small><q>From Black Print Culture to Digital Blackness</q></p>
+      <ul class="ideas">
+        <li><b>A read-in with guest readers</b><span>Neighbors, elders and local leaders reading in classrooms.</span></li>
+        <li><b>A visiting author or artist</b><span>Someone our students can meet, question and learn from.</span></li>
+        <li><b>Music and dance</b><span>An assembly that gets every grade moving.</span></li>
+        <li><b>Students as publishers</b><span>Student writing and art on the theme, shared with the community.</span></li>
+        <li><b>A family outing</b><span>Oakland's Black Joy Parade, Sunday, February 28, at noon.</span></li>
+        <li><b>Your idea</b><span>Tell us what would make the month meaningful for your child.</span></li>
+      </ul>
+      <p class="go"><a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLScklE4NMaAyp9EZCpc3yJ_Gf9DlY2BzbIJt5dyBtTvbOxYHVw/viewform" target="_blank" rel="noopener">Share an idea or volunteer</a></p>
+    </div>
+  </section>
+
+  <section class="block" id="share" aria-labelledby="share-h">
+    <div class="wrap">
+      <div class="cols two wide">
+        <div>
+          <p class="eyebrow">Your voice</p>
+          <h2 class="title" id="share-h">Tell us what you think, and how you would like to help</h2>
+          <p class="lede">One short form, about two minutes. Answer as much or as little as you like. We read every response, we never publish names, and we never name children.</p>
+          <p class="go"><a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLScklE4NMaAyp9EZCpc3yJ_Gf9DlY2BzbIJt5dyBtTvbOxYHVw/viewform" target="_blank" rel="noopener">Open the form</a></p>
           <div class="contact">
-            <p class="row"><a class="addr" id="email-value" href="mailto:kensingtonaapac@gmail.com">KensingtonAAPAC@gmail.com</a><button class="copy" id="copy-email" type="button" data-target="email-value">Copy</button></p>
-            <p class="row ui">or call <a class="tel" href="tel:+15104322173">(510) 432-2173</a></p>
-            <p class="who">Hisham Ali Bob, co-president and spokesperson</p>
+            <span>Prefer to write or call?</span>
+            <a href="mailto:KensingtonAAPAC@gmail.com" id="email-value">KensingtonAAPAC@gmail.com</a>
+            <button class="copy" type="button" data-copy="email-value">Copy</button>
+            <a href="tel:+15104322173">(510)&nbsp;432&#8209;2173</a>
           </div>
-          <p>We plan to meet monthly during the school year, 7:00 to 8:00 PM on Zoom, with an in-person option. If childcare or interpretation would help you attend, tell us.</p>
-          <p>We are also looking for a volunteer secretary to keep our notes, and a delegate to the district's African American Site Advisory Team. If either interests you, say so when you write.</p>
         </div>
-        <div class="dates-wrap">
-          <h3>Proposed meeting dates</h3>
-          <dl class="dates">
-            <div><dt>Thu, Nov 5</dt><dd>Plans for the year and the Ruby Bridges Walk</dd></div>
-            <div><dt>Thu, Dec 3</dt><dd>Walk recap, and what families want in next year's school plan</dd></div>
-            <div><dt>Thu, Jan 7</dt><dd>How our students are doing, with the principal</dd></div>
-            <div><dt>Thu, Feb 4</dt><dd>Black History Month at school</dd></div>
-            <div><dt>Thu, Mar 4</dt><dd>Our recommendations to the School Site Council</dd></div>
-            <div><dt>Thu, Apr 1</dt><dd>Families' input on the district's LCAP, its yearly plan for goals and spending</dd></div>
-            <div><dt>Thu, May 6</dt><dd>Choosing next year's co-presidents</dd></div>
-            <div><dt>Thu, Jun 3</dt><dd>Year-end report and celebration</dd></div>
-          </dl>
-          <p class="dates-note">Families will confirm these dates at the November meeting.</p>
+        <div class="card">
+          <h3>What the form asks</h3>
+          <ol class="ask">
+            <li>What would make Black History Month meaningful for your child and for the school</li>
+            <li>How you would like to help: reading to a class, planning, setting up, sharing a skill or a story</li>
+            <li>When you are usually free</li>
+            <li>Anything else you want AAPAC to work on this year</li>
+          </ol>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="questions" id="questions">
+  <section class="block" id="photos" aria-labelledby="photos-h">
     <div class="wrap">
-      <h2 class="title">Questions families ask us</h2>
-      <div class="qa">
-        <div><h3>Do I have to be Black to join?</h3><p>No. AAPAC centers Black students and families, and parents of every background are members. Anyone who shares that commitment is welcome.</p></div>
-        <div><h3>Is AAPAC part of the PTA?</h3><p>No. AAPAC is the school's African American parent advisory council, following <a href="https://www.wccusd.net/departments-and-areas/office-of-african-american-student-achievement-oaasa/african-american-student-achievement/african-american-parent-advisory-council-aapac">West Contra Costa Unified's model</a>. We work closely with the PTA, the Kensington Education Foundation and the Culture and Community Coalition, and we bring Black families' perspectives to that work.</p></div>
-        <div><h3>How much time does it take?</h3><p>About an hour a month for meetings. Coming once still helps.</p></div>
-        <div><h3>Can I share a concern privately?</h3><p>Yes. Write or call us. We keep what you share private unless you ask us to raise it, and we never name children.</p></div>
-        <div><h3>Who decides what AAPAC says?</h3><p>Families do. We put formal complaints and public positions to a family vote, and both co-presidents approve public statements.</p></div>
-        <div><h3>What does AAPAC do?</h3><p>We advise the principal and the School Site Council, the group of parents and staff that approves the school's plan and how some of its funds are spent. We also host gatherings so Black families can find each other.</p></div>
+      <p class="eyebrow">November 13, 2026</p>
+      <h2 class="title" id="photos-h">The Ruby Bridges Walk</h2>
+      <p class="lede">On November 14, 1960, six-year-old Ruby Bridges walked into a school in New Orleans that had never admitted a Black child. This year our students walked up the hill together in her honor, with families, neighbors and local leaders beside them.</p>
+      <div class="gallery">
+        <figure><a href="photos/walk-1-banner-1600.jpg"><picture><source type="image/webp" srcset="photos/walk-1-banner-480.webp 480w, photos/walk-1-banner-800.webp 800w, photos/walk-1-banner-1600.webp 1600w" sizes="(min-width: 1080px) 520px, (min-width: 700px) 50vw, 100vw"><img src="photos/walk-1-banner-800.jpg" srcset="photos/walk-1-banner-480.jpg 480w, photos/walk-1-banner-800.jpg 800w, photos/walk-1-banner-1600.jpg 1600w" sizes="(min-width: 1080px) 520px, (min-width: 700px) 50vw, 100vw" width="1600" height="1066" alt="Children carry a purple banner reading Kensington Elementary, Ruby Bridges Walk to School Day, with a crowd of families behind them."></picture></a><figcaption>Students lead the Ruby Bridges Walk to School.</figcaption></figure>
+        <figure><a href="photos/walk-2-story-1600.jpg"><picture><source type="image/webp" srcset="photos/walk-2-story-480.webp 480w, photos/walk-2-story-800.webp 800w, photos/walk-2-story-1600.webp 1600w" sizes="(min-width: 1080px) 520px, 50vw"><img src="photos/walk-2-story-800.jpg" srcset="photos/walk-2-story-480.jpg 480w, photos/walk-2-story-800.jpg 800w, photos/walk-2-story-1600.jpg 1600w" sizes="(min-width: 1080px) 520px, 50vw" width="1600" height="1066" loading="lazy" alt="A father reads a picture book into a microphone while students sit on the floor and families stand behind them."></picture></a><figcaption>Daymon Warren reads <cite>I Am Ruby Bridges</cite> at Arlington Community Church.</figcaption></figure>
+        <figure><a href="photos/walk-3-signs-1600.jpg"><picture><source type="image/webp" srcset="photos/walk-3-signs-480.webp 480w, photos/walk-3-signs-800.webp 800w, photos/walk-3-signs-1600.webp 1600w" sizes="(min-width: 1080px) 520px, 50vw"><img src="photos/walk-3-signs-800.jpg" srcset="photos/walk-3-signs-480.jpg 480w, photos/walk-3-signs-800.jpg 800w, photos/walk-3-signs-1600.jpg 1600w" sizes="(min-width: 1080px) 520px, 50vw" width="1600" height="1441" loading="lazy" alt="Students walk with hand-drawn signs that read Everyone Belongs and We Walk with Ruby for Equality."></picture></a><figcaption>Signs the students made that morning.</figcaption></figure>
+        <figure><a href="photos/walk-4-crossing-1600.jpg"><picture><source type="image/webp" srcset="photos/walk-4-crossing-480.webp 480w, photos/walk-4-crossing-800.webp 800w, photos/walk-4-crossing-1600.webp 1600w" sizes="(min-width: 1080px) 520px, 50vw"><img src="photos/walk-4-crossing-800.jpg" srcset="photos/walk-4-crossing-480.jpg 480w, photos/walk-4-crossing-800.jpg 800w, photos/walk-4-crossing-1600.jpg 1600w" sizes="(min-width: 1080px) 520px, 50vw" width="1600" height="1066" loading="lazy" alt="A police officer in a safety vest stands in the street as students with the banner wait to cross."></picture></a><figcaption>A Kensington Police officer guides walkers across Arlington Avenue.</figcaption></figure>
+        <figure><a href="photos/walk-5-families-1600.jpg"><picture><source type="image/webp" srcset="photos/walk-5-families-480.webp 480w, photos/walk-5-families-800.webp 800w, photos/walk-5-families-1600.webp 1600w" sizes="(min-width: 1080px) 520px, 50vw"><img src="photos/walk-5-families-800.jpg" srcset="photos/walk-5-families-480.jpg 480w, photos/walk-5-families-800.jpg 800w, photos/walk-5-families-1600.jpg 1600w" sizes="(min-width: 1080px) 520px, 50vw" width="1600" height="1066" loading="lazy" alt="Two students carry a sign reading We Walk with Ruby for Courage, with smiling parents walking behind."></picture></a><figcaption>Families and neighbors walk with students.</figcaption></figure>
+      </div>
+      <p class="credit">Photos by Ittai Shiu. Tap a photo to see it larger. If you would like a photo of your child removed, write to us and we will take it down the same day.</p>
+    </div>
+  </section>
+
+  <section class="block" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <p class="eyebrow">About</p>
+      <h2 class="title" id="about-h">What AAPAC is</h2>
+      <p class="lede">AAPAC is Kensington Elementary's African American Parent Advisory Council. It follows <a href="https://www.wccusd.net/departments-and-areas/office-of-african-american-student-achievement-oaasa/african-american-student-achievement/african-american-parent-advisory-council-aapac" target="_blank" rel="noopener">West Contra Costa Unified's model</a>: parents and caregivers, with school staff, who advise the principal and the School Site Council on how Black students are doing and what would help.</p>
+      <ul class="facts">
+        <li><b>Who we are</b>Parents, caregivers, grandparents, staff and neighbors. We center Black, African, Caribbean and multiracial students and their families, and everyone who shares that commitment is welcome.</li>
+        <li><b>Who leads</b>Hisham Ali Bob and Faith Agyekum, co-presidents, both Kensington parents.</li>
+        <li><b>Who we work with</b>Principal Kim Jordan and the school staff, the PTA, the Kensington Education Foundation and the Culture and Community Coalition.</li>
+      </ul>
+      <div class="faq">
+        <details>
+          <summary>Do I have to be Black to take part?</summary>
+          <div><p>No. AAPAC centers Black students and families, and parents of every background take part. Anyone who shares that commitment is welcome.</p></div>
+        </details>
+        <details>
+          <summary>Is AAPAC part of the PTA?</summary>
+          <div><p>No. AAPAC is the school's African American parent advisory council, following West Contra Costa Unified's model. We work closely with the PTA, the Kensington Education Foundation and the Culture and Community Coalition, and we bring Black families' perspectives to that work.</p></div>
+        </details>
+        <details>
+          <summary>How much time does it take?</summary>
+          <div><p>As much as you have. There are four meetings with the principal each year, plus playdates and events. Coming once still helps.</p></div>
+        </details>
+        <details>
+          <summary>Can I share a concern privately?</summary>
+          <div><p>Yes. Write or call us. We keep what you share private unless you ask us to raise it, and we never name children.</p></div>
+        </details>
+        <details>
+          <summary>Who decides what AAPAC says?</summary>
+          <div><p>Families do. We decide public positions together, and both co-presidents approve anything AAPAC says publicly.</p></div>
+        </details>
+        <details class="letter">
+          <summary>Our October letter to families and neighbors</summary>
+          <div>
+            <p><em>Written October 24, 2026.</em></p>
+            <p>Dear Kensington families and neighbors,</p>
+            <p>Black students are 24 of the 488 children at Kensington, about 1 in 20 and the smallest share of any school on the district's 2026-27 count.<sup>1</sup> Many of our kids are one of very few Black children in their class. AAPAC is where their families find one another and work together with the school.</p>
+            <p>On the morning of Monday, October 19, staff found a racial slur against Black people written on a school wall. Some parents of kindergartners had to explain that word to their children for the first time. Some families are now asking whether Kensington is the right school for their children. We understand why, and we are working to make sure the answer can be yes.</p>
+            <p>Kensington Police is investigating it as a hate crime, Case No. 2026-0230. As of October 23, there is no suspect. We met with Principal Kim Jordan on October 21 and with the district's school climate team on October 23. Here is what we have asked for:</p>
+            <ul>
+              <li>A full, transparent investigation, with regular updates to families</li>
+              <li>Support for our students and for the staff members most affected</li>
+              <li>Clear, consistent responses when racial harm happens at school</li>
+              <li>A safer campus, including a look at the back gate and cameras</li>
+              <li>Early conversations with AAPAC before decisions that affect Black families</li>
+            </ul>
+            <p>We are grateful for the school's partnership, we look forward to the district's written answers, and we will share what we learn. If you can, come to the board meeting on November 12 and walk with us on November 13.</p>
+            <p class="sig">With gratitude,<br>Hisham Ali Bob and Faith Agyekum<br>Co-presidents, Kensington Elementary AAPAC</p>
+            <p class="fn">1. WCCUSD Office of African American Student Achievement, <a href="https://docs.google.com/spreadsheets/d/158TWvxcbhj67INkYc9gzjuByc6SGxy4Kw6P9EGFEqjc/edit?usp=sharing" target="_blank" rel="noopener">2026-27 Black student count by school</a>. Kensington: 24 of 488, or 5%, the lowest of the 51 schools with figures listed.</p>
+          </div>
+        </details>
       </div>
     </div>
   </section>
 
-  <section id="help">
-    <div class="wrap help">
-      <div>
-        <h2 class="title">If something happens to your child</h2>
-        <p class="lede">Tell the principal, and let us know. We will help you think through next steps.</p>
-      </div>
-      <div>
-        <div class="numbers">
-          <div><span class="what">Someone is in danger</span><a class="tel" href="tel:911">911</a></div>
-          <div><span class="what">Report a hate incident near school<span class="note">Kensington Police, non-emergency</span></span><a class="tel" href="tel:+15105257573">(510) 525-7573</a></div>
-          <div><span class="what">Find local help and referrals<span class="note">Free call, 24 hours a day</span></span><a class="tel" href="tel:211">211</a></div>
-          <div><span class="what">Racial harassment or discrimination at school<span class="note">WCCUSD Office of Educational Equity</span></span><a class="tel" href="tel:+15102311118">(510) 231-1118</a></div>
-          <div><span class="what">Federal civil rights complaint about a school<span class="note">U.S. Department of Education, Office for Civil Rights</span></span><a class="tel" href="tel:+18004213481">(800) 421-3481</a></div>
-          <div><span class="what">Discrimination at work or in housing<span class="note">California Civil Rights Department</span></span><a class="tel" href="tel:+18008841684">(800) 884-1684</a></div>
-        </div>
-        <p class="src">The state's CA vs Hate line closed on July 1, 2026, and the <a href="https://calcivilrights.ca.gov/ca-vs-hate-page/">Civil Rights Department</a> now points people to the numbers above.</p>
+  <section class="block" id="help" aria-labelledby="help-h">
+    <div class="wrap">
+      <p class="eyebrow">Get help</p>
+      <h2 class="title" id="help-h">If something happens to your child</h2>
+      <p class="lede">Tell the principal, and let us know. We will help you think through next steps.</p>
+      <ul class="help">
+        <li><span><b>Someone is in danger</b><span>Emergency</span></span><a href="tel:911">Call&nbsp;911</a></li>
+        <li><span><b>Report a hate incident near school</b><span>Kensington Police, non-emergency</span></span><a href="tel:+15105257573">(510)&nbsp;525&#8209;7573</a></li>
+        <li><span><b>Racial harassment or discrimination at school</b><span>WCCUSD Office of Educational Equity</span></span><a href="tel:+15102311118">(510)&nbsp;231&#8209;1118</a></li>
+        <li><span><b>Federal civil rights complaint about a school</b><span>U.S. Department of Education, Office for Civil Rights</span></span><a href="tel:+18004213481">(800)&nbsp;421&#8209;3481</a></li>
+        <li><span><b>Discrimination at work or in housing</b><span>California Civil Rights Department</span></span><a href="tel:+18008841684">(800)&nbsp;884&#8209;1684</a></li>
+        <li><span><b>Find local help and referrals</b><span>Free call, 24 hours a day</span></span><a href="tel:211">Call&nbsp;211</a></li>
+      </ul>
+      <div class="card tip">
+        <h3>Do you know something about October 16 to 19?</h3>
+        <p>The investigation into the slur found on a school wall is still open. If you saw anything, heard someone talk about it, or have doorbell, home or car camera footage from Friday, October 16, through Monday morning, October 19, call Kensington Police at <a href="tel:+15105257573">(510)&nbsp;525&#8209;7573</a> and give Case No. 2026-0230. Tips can be anonymous.</p>
       </div>
     </div>
   </section>
+
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="mark">
+    <a class="mark" href="#main">
       <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
       <span><span class="mark-name">Kensington AAPAC</span><span class="mark-sub">African American Parent Advisory Council</span></span>
-    </div>
-    <div class="foot">
-      <p class="hope">Our hope is that every child at Kensington, including every Black child, feels known, safe and proud at school.</p>
-      <p>The African American Parent Advisory Council of Kensington Elementary School, West Contra Costa Unified School District. AAPAC's statements are its own.</p>
-      <p>AAPAC events are open to all regardless of race, color, sex, gender identity, religion, national origin, or sexual orientation.</p>
-      <p>Updated October 24, 2026</p>
-    </div>
+    </a>
+    <p class="hope">Our hope is that every child at Kensington, including every Black child, feels known, safe and proud at school.</p>
+    <p class="fine">The African American Parent Advisory Council of Kensington Elementary School, West Contra Costa Unified School District. AAPAC's statements are its own. AAPAC events are open to all regardless of race, color, sex, gender identity, religion, national origin, or sexual orientation.</p>
+    <p class="fine"><a href="mailto:KensingtonAAPAC@gmail.com">KensingtonAAPAC@gmail.com</a> · <a href="tel:+15104322173">(510)&nbsp;432&#8209;2173</a> · Updated <time datetime="2026-11-20">November 20, 2026</time></p>
   </div>
 </footer>
 
 <script>
-document.querySelectorAll("button.copy").forEach(function (btn) {
-  var label = btn.textContent;
-  btn.addEventListener("click", function () {
-    var el = document.getElementById(btn.getAttribute("data-target"));
-    var text = el ? el.textContent.trim() : "";
-    function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = label; }, 1800); }
-    function selectIt() {
-      try { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
-      done("Selected");
-    }
-    try { navigator.clipboard.writeText(text).then(function () { done("Copied"); }, selectIt); } catch (e) { selectIt(); }
+(function () {
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  document.querySelectorAll("[data-until]").forEach(function (el) {
+    var p = el.getAttribute("data-until").split("-");
+    if (new Date(+p[0], +p[1] - 1, +p[2]) < today) { el.hidden = true; }
   });
-});
+  document.querySelectorAll(".next ul, .dates").forEach(function (list) {
+    var first = list.querySelector("li:not([hidden])");
+    if (first) { first.style.borderTop = "0"; first.style.marginTop = "0"; first.style.paddingTop = "0"; }
+    else { var box = list.closest(".next"); if (box) { box.hidden = true; } }
+  });
+  document.querySelectorAll("button.copy").forEach(function (btn) {
+    var label = btn.textContent;
+    btn.addEventListener("click", function () {
+      var el = document.getElementById(btn.getAttribute("data-copy"));
+      if (!el || !navigator.clipboard) { return; }
+      navigator.clipboard.writeText(el.textContent.trim()).then(function () {
+        btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1600);
+      });
+    });
+  });
+})();
 </script>
-
 </body>
 </html>
