@@ -431,7 +431,7 @@ footer a { color: var(--on-deep); }
   .road li:first-child::after { content: ""; position: absolute; left: -26px; top: 6px; width: 14px; height: 14px; border-radius: 999px; box-shadow: 0 0 0 2px var(--gold-bright); opacity: 0; }
   .statement p { color: #fff; }
   .statement .flag, footer .flag { box-shadow: 0 0 0 1px rgba(255, 255, 255, .45), 0 0 28px 6px rgba(240, 185, 58, .22); }
-  .masthead::after, .band::after, footer::after { content: ""; position: absolute; left: 0; top: 0; width: 30%; height: 4px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .75), transparent); transform: translateX(-110%); pointer-events: none; }
+  .band::after, footer::after { content: ""; position: absolute; left: 0; top: 0; width: 30%; height: 4px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .75), transparent); transform: translateX(-110%); pointer-events: none; }
   .band::after { height: 6px; }
 
   @media (min-width: 760px) { .road li:first-child::after { left: 0; top: -26px; } }
@@ -458,7 +458,6 @@ footer a { color: var(--on-deep); }
     .opening .btn.primary::after { animation: glint 1.2s var(--ease) 1.5s backwards; }
     .soon::after { animation: ring 2.2s var(--ease) infinite; }
     .road li:first-child::after { animation: ring2 2.6s var(--ease) infinite; }
-    .masthead::after { animation: sweep 9s cubic-bezier(.45, 0, .2, 1) .9s infinite; }
     .band::after, footer::after { animation: sweep 9s cubic-bezier(.45, 0, .2, 1) 2.5s infinite; }
     :root .reveal { opacity: 0; transform: translateY(18px); }
     .eyebrow::before { transition: transform .8s var(--ease) .25s; }
