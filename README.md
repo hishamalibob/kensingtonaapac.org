@@ -12,7 +12,7 @@ Source for kensingtonaapac.org, the site of the African American Parent Advisory
 - privacy.html: privacy and accessibility page, linked from the footer.
 - og-image.png: the preview image shown when the link is shared.
 - favicon.ico, favicon.svg, icon-192.png, icon-512.png, apple-touch-icon.png, site.webmanifest: site icons.
-- banner.jpg, robots.txt, sitemap.xml, CNAME.
+- robots.txt, sitemap.xml, CNAME.
 
 ## Weekly update (about ten minutes)
 
