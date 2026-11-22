@@ -294,6 +294,10 @@ footer a { color: var(--on-deep); }
   .masthead nav { overflow-x: auto; min-width: 0; margin-left: auto; padding-bottom: 14px; }
   .masthead nav ul { margin-left: 0; }
   .masthead nav .nav-share { display: none; }
+  .masthead .mark { flex: none; }
+  .masthead .mark-sub { white-space: nowrap; }
+  .masthead nav a { padding: 12px 10px; }
+  .masthead nav a[aria-current="true"]::after { left: 10px; right: 10px; }
   .masthead .head-cta { display: inline-flex; flex: none; min-height: 44px; padding: 8px 18px; font-size: 0.95rem; margin-bottom: 14px; }
 }
 @media print {
