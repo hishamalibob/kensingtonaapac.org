@@ -63,6 +63,36 @@ jobs:
           printf '%s' "$problems" > problems.txt
           if [ -s problems.txt ]; then cat problems.txt; else echo "All checks passed."; fi
 
+      - name: Check that the weekly update is current
+        shell: bash
+        run: |
+          set -u
+          week=$(curl -sS -L --max-time 25 "$SITE/" 2>/dev/null | grep -o 'Week of [A-Z][a-z]* [0-9]\{1,2\}, [0-9]\{4\}' | head -n1 | sed 's/^Week of //')
+          : > stale.txt
+          if [ -n "$week" ]; then
+            age=$(( ( $(date +%s) - $(date -d "$week" +%s) ) / 86400 ))
+            if [ "$age" -gt 8 ]; then echo "The weekly update on the site still says Week of $week ($age days ago)." > stale.txt; fi
+          fi
+          cat stale.txt
+
+      - name: Open or close the weekly update reminder
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const stale = fs.readFileSync('stale.txt', 'utf8').trim();
+            const { owner, repo } = context.repo;
+            const open = await github.rest.issues.listForRepo({ owner, repo, state: 'open', labels: 'weekly-update' });
+            if (stale && !open.data.length) {
+              await github.rest.issues.create({ owner, repo, labels: ['weekly-update'],
+                title: 'Time for the weekly update on kensingtonaapac.org',
+                body: `@${owner} ${stale}\n\nThe README has the steps. This reminder closes itself after the update goes live.` });
+            } else if (!stale && open.data.length) {
+              for (const i of open.data) {
+                await github.rest.issues.update({ owner, repo, issue_number: i.number, state: 'closed' });
+              }
+            }
+
       - name: Open, update or close the alert
         uses: actions/github-script@v8
         with:
