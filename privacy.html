@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy and accessibility | Kensington Elementary AAPAC</title>
+<meta name="description" content="What kensingtonaapac.org collects, how AAPAC uses what families share, and how we make the site work for everyone.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://kensingtonaapac.org/privacy.html">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111513" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/figtree-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Young Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/young-serif-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/source-serif-4-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/figtree-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/figtree-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/figtree-latin-700-normal.woff2) format("woff2"); }
+:root {
+  --paper: #ffffff; --tint: #f1f5f2; --ink: #171a19; --soft: #4a5650; --rule: #d9e0db;
+  --green: #17683f; --green-deep: #0f3d27; --gold-bright: #f0b93a; --on-deep: #f4f7f5; --flag-edge: transparent;
+  --font-display: "Young Serif", Georgia, "Times New Roman", serif;
+  --font-text: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-ui: "Figtree", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #111513; --tint: #18201c; --ink: #edf2ee; --soft: #a9b6ae; --rule: #2b3630; --green: #63c891; --green-deep: #0c2e1d; --flag-edge: rgba(255, 255, 255, 0.45); color-scheme: dark; }
+  html header::before, html footer::before { background: linear-gradient(90deg, #c8102e 0 33.34%, #2e3431 33.34% 66.67%, #0a7a3d 66.67% 100%); }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-text); font-size: 17px; line-height: 1.6; }
+p, h1, h2, ul { margin: 0; }
+a { color: var(--green); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+a:hover { text-decoration-thickness: 2.5px; }
+:focus-visible { outline: 3px solid var(--gold-bright); outline-offset: 3px; border-radius: 4px; }
+::selection { background: rgba(240, 185, 58, 0.45); }
+.wrap { width: 100%; max-width: 760px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: 12px; top: -80px; background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 8px; z-index: 60; font-family: var(--font-ui); font-weight: 600; text-decoration: none; }
+.skip:focus { top: 12px; }
+header { position: relative; border-bottom: 1px solid var(--rule); padding: calc(18px + env(safe-area-inset-top, 0px)) 0 14px; }
+header::before, footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, #c8102e 0 33.34%, #0c0c0c 33.34% 66.67%, #0a7a3d 66.67% 100%); }
+header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; }
+.mark { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; padding: 6px 0; }
+.mark-name { display: block; font-family: var(--font-display); font-size: 1.2rem; line-height: 1.1; }
+.mark-sub { display: block; font-family: var(--font-ui); font-size: 0.8125rem; font-weight: 500; color: var(--soft); }
+.flag { display: grid; grid-template-rows: repeat(3, 6px); width: 30px; flex: none; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 1px var(--flag-edge); }
+.flag i { display: block; }
+.flag i:nth-child(1) { background: #c8102e; } .flag i:nth-child(2) { background: #0c0c0c; } .flag i:nth-child(3) { background: #0a7a3d; }
+.home { font-family: var(--font-ui); font-weight: 600; font-size: 0.94rem; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+main { padding: 44px 0 64px; }
+.eyebrow { font-family: var(--font-ui); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 6.4vw, 2.9rem); line-height: 1.1; }
+.lede { margin-top: 14px; font-size: 1.1rem; color: var(--soft); }
+h2 { font-family: var(--font-ui); font-weight: 700; font-size: 1.15rem; line-height: 1.3; margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--rule); }
+h2 + p, h2 + ul { margin-top: 10px; }
+p + p, p + ul, ul + p { margin-top: 12px; }
+main ul { padding-left: 1.2em; }
+main li + li { margin-top: 8px; }
+.contact { margin-top: 18px; padding: 16px 18px; background: var(--tint); border: 1px solid var(--rule); border-radius: 14px; font-family: var(--font-ui); }
+.contact a { font-weight: 600; }
+footer { position: relative; background: var(--green-deep); color: var(--on-deep); padding: 32px 0 calc(28px + env(safe-area-inset-bottom, 0px)); font-family: var(--font-ui); font-size: 0.9rem; }
+footer a { color: var(--on-deep); display: inline-block; padding: 6px 0; }
+footer p { opacity: 0.9; }
+@media (min-width: 700px) { body { font-size: 18px; } main { padding: 64px 0 88px; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="wrap">
+    <a class="mark" href="/">
+      <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span><span class="mark-name">Kensington AAPAC</span><span class="mark-sub">African American Parent Advisory Council</span></span>
+    </a>
+    <a class="home" href="/">Back to the home page</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p class="eyebrow">Privacy and accessibility</p>
+    <h1>How this site treats your information, and how we make it work for everyone</h1>
+    <p class="lede">Kensington AAPAC is a volunteer group of parents and caregivers. This page explains what kensingtonaapac.org collects, how we use what families share with us, and what to do if something on the site doesn't work for you.</p>
+
+    <h2>What this website collects</h2>
+    <ul>
+      <li>No cookies, no tracking, no analytics and no advertising.</li>
+      <li>Our fonts and photos are served from this site, so reading it doesn't send your information to other companies.</li>
+      <li>The site is hosted by GitHub Pages. Like most web hosts, GitHub records visitors' IP addresses for security purposes. AAPAC doesn't see those records.</li>
+    </ul>
+
+    <h2>Our forms</h2>
+    <p>Our forms are Google Forms. When you open one, you are on Google's site, and Google's privacy policy applies. Answer only what you are comfortable sharing.</p>
+    <p>Responses go to AAPAC's email account. We use them only to plan AAPAC's work and to reach you if you asked us to. We never sell or share them, we never publish names, and we never name children.</p>
+
+    <h2>Email and our calendar</h2>
+    <p>Messages to hello@kensingtonaapac.org are forwarded to AAPAC's email account. If you subscribe to our calendar, your calendar app checks this site for new dates. We can't see who subscribes.</p>
+
+    <h2>Photos</h2>
+    <p>We share photos from AAPAC events to celebrate our community, and we credit the photographer. If you would like a photo of your child removed, write to us and we will take it down the same day.</p>
+
+    <h2>Accessibility</h2>
+    <p>We want every family to be able to use this site. We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA. We check the site with automated accessibility tests and with a keyboard alone, on phones and computers, in light and dark mode.</p>
+    <p>If something doesn't work for you, or you would like information in another format or language, tell us and we will help.</p>
+    <p class="contact">Write to <a href="mailto:hello@kensingtonaapac.org">hello@kensingtonaapac.org</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>The African American Parent Advisory Council of Kensington Elementary School, West Contra Costa Unified School District. Updated <time datetime="2026-11-21">November 21, 2026</time>.</p>
+    <p><a href="/">kensingtonaapac.org</a></p>
+  </div>
+</footer>
+</body>
+</html>

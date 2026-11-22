@@ -1,0 +1,91 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kensington Elementary AAPAC//kensingtonaapac.org//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Kensington AAPAC
+X-WR-TIMEZONE:America/Los_Angeles
+X-WR-CALDESC:Dates from kensingtonaapac.org
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:aapac-playdate-2026-12-07@kensingtonaapac.org
+DTSTAMP:20261121T200000Z
+DTSTART:20261208T000000Z
+DTEND:20261208T013000Z
+SUMMARY:Kensington AAPAC family playdate
+DESCRIPTION:Kids play\, grown-ups connect. Details go to AAPAC families by 
+ email. Questions: hello@kensingtonaapac.org
+URL:https://kensingtonaapac.org/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kcsd-board-2026-12-10@kensingtonaapac.org
+DTSTAMP:20261121T200000Z
+DTSTART:20261211T030000Z
+DTEND:20261211T050000Z
+SUMMARY:Kensington Community Services District board meeting
+LOCATION:Kensington Community Center\, 59 Arlington Avenue\, Kensington\, C
+ A 94707
+DESCRIPTION:Open to the public\, in person or on Zoom. Agenda and Zoom link
+ : https://www.kppcsd.org/board-meetings
+URL:https://kensingtonaapac.org/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:aapac-meeting-2026-12-14@kensingtonaapac.org
+DTSTAMP:20261121T200000Z
+DTSTART:20261215T000000Z
+DTEND:20261215T010000Z
+SUMMARY:Kensington AAPAC meeting with Principal Jordan
+LOCATION:Kensington Elementary School\, 90 Highland Boulevard\, Kensington\
+ , CA 94708
+DESCRIPTION:First of four AAPAC meetings with the principal this school yea
+ r. Agenda and notes: https://kensingtonaapac.org/#dates. Questions: hello@
+ kensingtonaapac.org
+URL:https://kensingtonaapac.org/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:aapac-meeting-2027-01-25@kensingtonaapac.org
+DTSTAMP:20261121T200000Z
+DTSTART:20270126T000000Z
+DTEND:20270126T010000Z
+SUMMARY:Kensington AAPAC meeting with Principal Jordan
+LOCATION:Kensington Elementary School\, 90 Highland Boulevard\, Kensington\
+ , CA 94708
+DESCRIPTION:Second of four AAPAC meetings with the principal this school ye
+ ar. Agenda and notes: https://kensingtonaapac.org/#dates. Questions: hello
+ @kensingtonaapac.org
+URL:https://kensingtonaapac.org/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:aapac-meeting-2027-03-15@kensingtonaapac.org
+DTSTAMP:20261121T200000Z
+DTSTART:20270315T230000Z
+DTEND:20270316T000000Z
+SUMMARY:Kensington AAPAC meeting with Principal Jordan
+LOCATION:Kensington Elementary School\, 90 Highland Boulevard\, Kensington\
+ , CA 94708
+DESCRIPTION:Third of four AAPAC meetings with the principal this school yea
+ r. Agenda and notes: https://kensingtonaapac.org/#dates. Questions: hello@
+ kensingtonaapac.org
+URL:https://kensingtonaapac.org/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:aapac-meeting-2027-05-10@kensingtonaapac.org
+DTSTAMP:20261121T200000Z
+DTSTART:20270510T230000Z
+DTEND:20270511T000000Z
+SUMMARY:Kensington AAPAC meeting with Principal Jordan
+LOCATION:Kensington Elementary School\, 90 Highland Boulevard\, Kensington\
+ , CA 94708
+DESCRIPTION:Fourth of four AAPAC meetings with the principal this school ye
+ ar. Agenda and notes: https://kensingtonaapac.org/#dates. Questions: hello
+ @kensingtonaapac.org
+URL:https://kensingtonaapac.org/
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR
