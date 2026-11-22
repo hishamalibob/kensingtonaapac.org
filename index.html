@@ -11,7 +11,7 @@
 <meta property="og:description" content="What we are working on this week, meeting dates, Black History Month plans, photos, and how to get involved.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kensingtonaapac.org/">
-<meta property="og:image" content="https://kensingtonaapac.org/og-image.png">
+<meta property="og:image" content="https://kensingtonaapac.org/share-2026.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Kensington Elementary AAPAC, African American Parent Advisory Council.">
@@ -271,6 +271,14 @@ html:has(.viewer[open]) { overflow: hidden; }
 .goals b { display: block; font-family: var(--font-ui); font-weight: 700; line-height: 1.3; }
 .goals span { display: block; color: var(--soft); font-size: 0.97rem; margin-top: 4px; }
 @media (min-width: 900px) { .goals { grid-template-columns: repeat(3, 1fr); } }
+.steps { display: grid; gap: 14px; margin-top: 26px; counter-reset: st; }
+.steps li { position: relative; display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; padding: 22px 22px 20px; box-shadow: var(--shadow); }
+.steps li::before { counter-increment: st; content: counter(st); content: counter(st) / ""; font-family: var(--font-display); font-size: 2.6rem; line-height: 1; color: var(--green); margin-bottom: 12px; }
+.steps b { font-family: var(--font-ui); font-weight: 700; font-size: 1.08rem; line-height: 1.3; }
+.steps span:not(.sr-only) { color: var(--soft); margin: 4px 0 16px; }
+.steps .step-act { align-self: flex-start; margin-top: auto; font-family: var(--font-ui); background: transparent; cursor: pointer; }
+.start { background: var(--tint); }
+@media (min-width: 900px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
 .facts { display: grid; gap: 12px; margin-top: 30px; }
 .facts li { border-left: 3px solid var(--green); padding: 2px 0 2px 14px; }
 .facts b { font-family: var(--font-ui); display: block; }
@@ -435,9 +443,9 @@ footer a { color: var(--on-deep); }
 
   /* Hover, only where a mouse can hover */
   @media (hover: hover) {
-    .plan li, .goals li, .help li, .record-list li, .ideas li, .card { transition: transform .35s var(--ease), border-color .35s var(--ease); }
-    .plan li:hover, .goals li:hover, .help li:hover, .record-list li:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--gold-bright) 60%, var(--rule)); }
-    .plan li:hover::after, .goals li:hover::after, .help li:hover::after, .record-list li:hover::after, .card:hover::after { opacity: 1; }
+    .plan li, .goals li, .help li, .record-list li, .ideas li, .card, .steps li { transition: transform .35s var(--ease), border-color .35s var(--ease); }
+    .plan li:hover, .goals li:hover, .help li:hover, .record-list li:hover, .steps li:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--gold-bright) 60%, var(--rule)); }
+    .plan li:hover::after, .goals li:hover::after, .help li:hover::after, .record-list li:hover::after, .card:hover::after, .steps li:hover::after { opacity: 1; }
     .band .ideas li:hover { transform: translateY(-3px); border-color: rgba(240, 185, 58, .75); }
     .gallery a:hover img { transform: scale(1.045); }
     .btn:hover::after, .help a:hover::after { transform: translateX(130%); transition: transform .75s var(--ease); }
@@ -475,6 +483,12 @@ footer a { color: var(--on-deep); }
   .gallery a { box-shadow: 0 1px 2px rgba(15, 61, 39, .06), 0 18px 36px -24px rgba(15, 61, 39, .45); }
   main { counter-reset: sec; }
   main > section { counter-increment: sec; }
+  main > section.start { counter-increment: none; }
+  .start .eyebrow::after { content: none; }
+  .steps li::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; box-shadow: var(--lift); opacity: 0; pointer-events: none; transition: opacity .35s var(--ease); }
+  .steps li { background-image: var(--sheen); }
+  ::view-transition-group(photo) { animation-duration: .5s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
+  ::view-transition-old(photo), ::view-transition-new(photo) { height: 100%; object-fit: cover; }
   main > section .eyebrow::after { content: counter(sec, decimal-leading-zero); content: counter(sec, decimal-leading-zero) / ""; order: -1; font-family: var(--font-display); font-size: 1.12rem; font-weight: 400; line-height: 1; letter-spacing: 0; text-transform: none; color: var(--ink); font-variant-numeric: lining-nums tabular-nums; }
   .band .eyebrow::after { color: #fff; }
   @media (prefers-color-scheme: dark) {
@@ -513,7 +527,7 @@ footer a { color: var(--on-deep); }
   .wrap { max-width: none; padding-left: 0; padding-right: 0; }
   .masthead { position: static !important; border: 0; padding-top: 0; }
   .masthead::before, footer::before { display: none; }
-  .masthead nav, .head-cta, .go, .btn, .copy, .cal, .skip, .creds, .next-more, .print-row, .more-btn, .to-top, .viewer, .subscribe, .sub-links { display: none !important; }
+  .masthead nav, .head-cta, .go, .btn, .copy, .cal, .skip, .start, .creds, .next-more, .print-row, .more-btn, .to-top, .viewer, .subscribe, .sub-links { display: none !important; }
   .band, footer { background: none; color: #000; } .band .eyebrow, .road b, .theme small { color: #000; }
   details > div { display: block; }
   a { color: #000; text-decoration: none; }
@@ -602,10 +616,10 @@ footer a { color: var(--on-deep); }
     <div class="wrap">
       <div>
         <h1>Working together for <span class="hl">every child</span> at&nbsp;Kensington.</h1>
-        <p class="intro">We are parents and caregivers who make up Kensington Elementary's African American Parent Advisory Council. We support one another's children, welcome new families, and work alongside the principal and staff so the school hears from Black families early.</p>
+        <p class="intro">We are parents and caregivers who make up Kensington Elementary’s African American Parent Advisory Council. We support one another’s children, welcome new families, and work alongside the principal and staff so the school hears from Black families early.</p>
         <p class="go"><a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLScklE4NMaAyp9EZCpc3yJ_Gf9DlY2BzbIJt5dyBtTvbOxYHVw/viewform" target="_blank" rel="noopener">Share your ideas<span class="sr-only"> (opens in a new tab)</span></a><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeUNwGSZ4dnDfI4pCELUJx-YYnWdaFLD6mLoXSEh0PaAme2sg/viewform" target="_blank" rel="noopener">Sign up for updates<span class="sr-only"> (opens in a new tab)</span></a></p>
         <ul class="creds">
-          <li>Follows the district's AAPAC model</li>
+          <li>Follows the district’s AAPAC model</li>
           <li>Four meetings with the principal this year</li>
           <li>Open to every family</li>
         </ul>
@@ -650,7 +664,7 @@ footer a { color: var(--on-deep); }
           <h3>What comes next</h3>
           <ul class="plan">
             <li><span class="tag">Mon, Dec 7</span><span class="what">A family playdate</span><span class="why"><b>Why</b>Our kids are few, and they are spread across many classrooms. Time together matters as much as any meeting.</span></li>
-            <li><span class="tag">Mon, Dec 14</span><span class="what">Our first meeting with the principal</span><span class="why"><b>Why</b>West Contra Costa Unified asks each school's AAPAC to meet through the year and advise the principal and the School Site Council. We want Black families' experiences heard before decisions are made. The agenda goes up here a week ahead, and a short summary within a week after.</span></li>
+            <li><span class="tag">Mon, Dec 14</span><span class="what">Our first meeting with the principal</span><span class="why"><b>Why</b>West Contra Costa Unified asks each school’s AAPAC to meet through the year and advise the principal and the School Site Council. We want Black families’ experiences heard before decisions are made. The agenda goes up here a week ahead, and a short summary within a week after.</span></li>
             <li><span class="tag">Now through February</span><span class="what">Planning Black History Month</span><span class="why"><b>Why</b>Good guest readers, artists and assemblies book months ahead. We want February shaped by families, so we are asking for ideas first.</span></li>
             <li><span class="tag">Ongoing</span><span class="what">Following through on campus safety, and on the harm itself</span><span class="why"><b>Why</b>At the town hall, families asked the district for a decision, a timeline and a written plan for the campus. Families have also asked that the people most affected stay at the center. We are pursuing both, with the district and alongside other Kensington parents.</span></li>
             <li><span class="tag">Next: Thu, Dec 10</span><span class="what">Showing up at public meetings</span><span class="why"><b>Why</b>Decisions about our campus and our neighborhood are made at the school board and the community services district. Both take public comment.</span></li>
@@ -662,11 +676,11 @@ footer a { color: var(--on-deep); }
             <li><span class="d">Nov 21</span><span>Opened a short form for Black History Month ideas and volunteers. <a href="#share">Share yours</a>.</span></li>
             <li><span class="d">Nov 20</span><span>Families chose Monday, December 7 for our next playdate.</span></li>
             <li><span class="d">Nov 19</span><span>Principal Jordan confirmed four AAPAC meetings for this school year.</span></li>
-            <li><span class="d">Nov 17</span><span>The district held a town hall on October's incident and campus safety. <a href="https://www.youtube.com/watch?v=2A9MM5MDBXY" target="_blank" rel="noopener">Watch the recording<span class="sr-only"> (opens in a new tab)</span></a>.</span></li>
+            <li><span class="d">Nov 17</span><span>The district held a town hall on October’s incident and campus safety. <a href="https://www.youtube.com/watch?v=2A9MM5MDBXY" target="_blank" rel="noopener">Watch the recording<span class="sr-only"> (opens in a new tab)</span></a>.</span></li>
             <li><span class="d">Nov 13</span><span>Students, families, neighbors and local leaders walked up the hill together for the Ruby Bridges Walk. <a href="#photos">See the photos</a>.</span></li>
             <li><span class="d">Nov 12</span><span>Families spoke at the community services district board meeting.</span></li>
-            <li><span class="d">Oct 23</span><span>Met with the district's school climate team.</span></li>
-            <li><span class="d">Oct 21</span><span>Met with Principal Jordan and gave her families' questions in writing.</span></li>
+            <li><span class="d">Oct 23</span><span>Met with the district’s school climate team.</span></li>
+            <li><span class="d">Oct 21</span><span>Met with Principal Jordan and gave her families’ questions in writing.</span></li>
             <li><span class="d">Oct 18</span><span>Marched in the Kensington Parade with our banner.</span></li>
           </ul>
         </div>
@@ -689,7 +703,7 @@ footer a { color: var(--on-deep); }
             <li data-until="2026-12-07"><span class="when">Mon, Dec 7 · 4:00 PM</span><span class="what">Family playdate</span><span class="detail">Kids play, grown-ups connect. Details go to AAPAC families, and anyone is welcome to write to us for them.</span></li>
             <li data-until="2026-12-14"><span class="when">Mon, Dec 14 · 4:00 to 5:00 PM</span><span class="what">AAPAC meeting with Principal Jordan</span><span class="detail">At Kensington Elementary. Details go to AAPAC families by email.</span></li>
             <li data-until="2027-05-10" data-series="2027-01-25,2027-03-15,2027-05-10"><span class="when">Mondays · 4:00 to 5:00 PM</span><span class="what">Three more meetings with the principal</span><span class="detail">January 25, March 15 and May 10, at Kensington Elementary.</span></li>
-            <li data-from="2027-05-11"><span class="when">Next school year</span><span class="what">New dates coming</span><span class="detail">We will post next year's meetings here. AAPAC families also get them by email.</span></li>
+            <li data-from="2027-05-11"><span class="when">Next school year</span><span class="what">New dates coming</span><span class="detail">We will post next year’s meetings here. AAPAC families also get them by email.</span></li>
           </ul>
         </div>
         <div class="card">
@@ -697,13 +711,13 @@ footer a { color: var(--on-deep); }
           <ul class="dates">
             <li data-until="2026-12-10"><span class="when">Thu, Dec 10 · 7:00 PM</span><span class="what">Kensington Community Services District board</span><span class="detail">Kensington Community Center, 59 Arlington Avenue, or Zoom. This board oversees Kensington Police and the park beside our school, and it meets on the second Thursday of each month. <a href="https://www.kppcsd.org/board-meetings" target="_blank" rel="noopener">Agendas and Zoom links<span class="sr-only"> (opens in a new tab)</span></a>.</span><span class="cal">Add to calendar: <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Kensington%20Community%20Services%20District%20board%20meeting&amp;dates=20261211T030000Z/20261211T050000Z&amp;details=Open%20to%20the%20public%2C%20in%20person%20or%20on%20Zoom.%20Agenda%20and%20Zoom%20link%3A%20https%3A%2F%2Fwww.kppcsd.org%2Fboard-meetings&amp;location=Kensington%20Community%20Center%2C%2059%20Arlington%20Avenue%2C%20Kensington%2C%20CA%2094707" target="_blank" rel="noopener">Google<span class="sr-only"> (opens in a new tab)</span></a> · <a href="kcsd-board-2026-12-10.ics" download>Apple or Outlook</a></span></li>
             <li data-from="2026-12-11"><span class="when">Second Thursday of each month</span><span class="what">Kensington Community Services District board</span><span class="detail">Kensington Community Center, 59 Arlington Avenue, or Zoom. This board oversees Kensington Police and the park beside our school. <a href="https://www.kppcsd.org/board-meetings" target="_blank" rel="noopener">Agendas, times and Zoom links<span class="sr-only"> (opens in a new tab)</span></a>.</span></li>
-            <li><span class="when">Evenings · 6:30 PM</span><span class="what">West Contra Costa Unified Board of Education</span><span class="detail">Lovonya DeJean Middle School, 3400 Macdonald Avenue, Richmond. Anyone may speak during public comment. <a href="https://www.wccusd.net/about-us/our-board/our-board-home" target="_blank" rel="noopener">Dates and agendas<span class="sr-only"> (opens in a new tab)</span></a> are on the district's site.</span></li>
+            <li><span class="when">Evenings · 6:30 PM</span><span class="what">West Contra Costa Unified Board of Education</span><span class="detail">Lovonya DeJean Middle School, 3400 Macdonald Avenue, Richmond. Anyone may speak during public comment. <a href="https://www.wccusd.net/about-us/our-board/our-board-home" target="_blank" rel="noopener">Dates and agendas<span class="sr-only"> (opens in a new tab)</span></a> are on the district’s site.</span></li>
           </ul>
         </div>
       </div>
       <div class="record">
         <h3 id="record-h">Agendas and notes, 2026-27</h3>
-        <p>We post each meeting's agenda here the week before and a short summary within a week after, so families who can't be there still know what was discussed and decided.</p>
+        <p>We post each meeting’s agenda here the week before and a short summary within a week after, so families who can’t be there still know what was discussed and decided.</p>
         <ul class="record-list">
           <li><span class="m">Mon, Dec 14</span><span class="s">Agenda by Dec 7</span><span class="s">Notes by Dec 21</span></li>
           <li><span class="m">Mon, Jan 25</span><span class="s">Agenda by Jan 18</span><span class="s">Notes by Feb 1</span></li>
@@ -719,20 +733,20 @@ footer a { color: var(--on-deep); }
     <div class="wrap">
       <p class="eyebrow">February 2027</p>
       <h2 class="title" id="feb-h">Black History Month, planned with families</h2>
-      <p class="lede">We are starting early so February belongs to the whole school. Nothing is booked yet. These are the ideas on the table, and we will bring families' thoughts to Principal Jordan in December.</p>
-      <p class="theme"><small>This year's national theme</small><q>From Black Print Culture to Digital Blackness</q></p>
+      <p class="lede">We are starting early so February belongs to the whole school. Nothing is booked yet. These are the ideas on the table, and we will bring families’ thoughts to Principal Jordan in December.</p>
+      <p class="theme"><small>This year’s national theme</small><q>From Black Print Culture to Digital Blackness</q></p>
       <ul class="ideas">
         <li><b>A read-in with guest readers</b><span>Neighbors, elders and local leaders reading in classrooms.</span></li>
         <li><b>A visiting author or artist</b><span>Someone our students can meet, question and learn from.</span></li>
         <li><b>Music and dance</b><span>An assembly that gets every grade moving.</span></li>
         <li><b>Students as publishers</b><span>Student writing and art on the theme, shared with the community.</span></li>
-        <li><b>A family outing</b><span>Oakland's Black Joy Parade, Sunday, February 28, at noon.</span></li>
+        <li><b>A family outing</b><span>Oakland’s Black Joy Parade, Sunday, February 28, at noon.</span></li>
         <li><b>Your idea</b><span>Tell us what would make the month meaningful for your child.</span></li>
       </ul>
       <h3 class="road-h">How February comes together</h3>
       <ol class="road">
         <li><b>Now</b><span>Families share ideas and offer to help.</span></li>
-        <li><b>Mon, Dec 14</b><span>We bring families' ideas to Principal Jordan.</span></li>
+        <li><b>Mon, Dec 14</b><span>We bring families’ ideas to Principal Jordan.</span></li>
         <li><b>January</b><span>We line up readers, guests and volunteers.</span></li>
         <li><b>February</b><span>Black History Month at Kensington.</span></li>
       </ol>
@@ -801,11 +815,24 @@ footer a { color: var(--on-deep); }
     </div>
   </div>
 
+  <section class="block start" id="join" aria-labelledby="join-h">
+    <div class="wrap">
+      <p class="eyebrow">Join us</p>
+      <h2 class="title" id="join-h">New here? Three ways to start</h2>
+      <p class="lede">AAPAC is open to every family, and coming once still helps.</p>
+      <ol class="steps">
+        <li><b>Get the updates</b><span>Sign up and we will keep you posted on dates, meeting notes and ways to help.</span><a class="chip step-act" href="https://docs.google.com/forms/d/e/1FAIpQLSeUNwGSZ4dnDfI4pCELUJx-YYnWdaFLD6mLoXSEh0PaAme2sg/viewform" target="_blank" rel="noopener">Sign up for updates<span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li><b>Come to the next gathering</b><span data-next>AAPAC family playdate, Mon, Dec&nbsp;7 at 4:00&nbsp;PM.</span><a class="chip step-act" href="#calendar">Add our dates to your calendar</a></li>
+        <li><b>Bring a friend</b><span>Invite one family you know. Every family is welcome, and the address is easy to remember: kensingtonaapac.org.</span><button type="button" class="chip step-act" data-share hidden>Share this page</button></li>
+      </ol>
+    </div>
+  </section>
+
   <section class="block" id="about" aria-labelledby="about-h">
     <div class="wrap">
       <p class="eyebrow">About</p>
       <h2 class="title" id="about-h">What AAPAC is</h2>
-      <p class="lede">AAPAC is Kensington Elementary's African American Parent Advisory Council. It follows <a href="https://www.wccusd.net/departments-and-areas/office-of-african-american-student-achievement-oaasa/african-american-student-achievement/african-american-parent-advisory-council-aapac" target="_blank" rel="noopener">West Contra Costa Unified's model<span class="sr-only"> (opens in a new tab)</span></a>: parents and caregivers, with school staff, who advise the principal and the School Site Council on how Black students are doing and what would help.</p>
+      <p class="lede">AAPAC is Kensington Elementary’s African American Parent Advisory Council. It follows <a href="https://www.wccusd.net/departments-and-areas/office-of-african-american-student-achievement-oaasa/african-american-student-achievement/african-american-parent-advisory-council-aapac" target="_blank" rel="noopener">West Contra Costa Unified’s model<span class="sr-only"> (opens in a new tab)</span></a>: parents and caregivers, with school staff, who advise the principal and the School Site Council on how Black students are doing and what would help.</p>
       <div class="mission">
         <p class="mission-line"><span class="mission-label">Our mission</span>Kensington AAPAC works with families, the principal and the School Site Council so every Black student at Kensington is safe, welcome and supported to achieve at high levels.</p>
         <h3 class="goals-h">Our goals for 2026-27</h3>
@@ -827,7 +854,7 @@ footer a { color: var(--on-deep); }
         </details>
         <details>
           <summary>Is AAPAC part of the PTA?</summary>
-          <div><p>No. AAPAC is the school's African American parent advisory council, following West Contra Costa Unified's model. We work closely with the PTA, the Kensington Education Foundation and the Culture and Community Coalition, and we bring Black families' perspectives to that work.</p></div>
+          <div><p>No. AAPAC is the school’s African American parent advisory council, following West Contra Costa Unified’s model. We work closely with the PTA, the Kensington Education Foundation and the Culture and Community Coalition, and we bring Black families’ perspectives to that work.</p></div>
         </details>
         <details>
           <summary>How much time does it take?</summary>
@@ -902,9 +929,10 @@ footer a { color: var(--on-deep); }
         <h2>Official links</h2>
         <ul>
           <li><a href="https://kensington.wccusd.net/" target="_blank" rel="noopener">Kensington Elementary<span class="sr-only"> (opens in a new tab)</span></a></li>
-          <li><a href="https://www.wccusd.net/departments-and-areas/office-of-african-american-student-achievement-oaasa/african-american-student-achievement/african-american-parent-advisory-council-aapac" target="_blank" rel="noopener">WCCUSD's AAPAC program<span class="sr-only"> (opens in a new tab)</span></a></li>
+          <li><a href="https://www.wccusd.net/departments-and-areas/office-of-african-american-student-achievement-oaasa/african-american-student-achievement/african-american-parent-advisory-council-aapac" target="_blank" rel="noopener">WCCUSD’s AAPAC program<span class="sr-only"> (opens in a new tab)</span></a></li>
           <li><a href="https://www.wccusd.net/about-us/our-board/our-board-home" target="_blank" rel="noopener">WCCUSD Board of Education<span class="sr-only"> (opens in a new tab)</span></a></li>
           <li><a href="https://www.kppcsd.org/board-meetings" target="_blank" rel="noopener">Kensington Community Services District<span class="sr-only"> (opens in a new tab)</span></a></li>
+          <li><a href="https://www.cde.ca.gov/eo/in/blackstudentachievement.asp" target="_blank" rel="noopener">California Black Student Achievement<span class="sr-only"> (opens in a new tab)</span></a></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -918,7 +946,7 @@ footer a { color: var(--on-deep); }
       </div>
     </div>
     <div class="foot-base">
-      <p class="fine">The African American Parent Advisory Council of Kensington Elementary School, West Contra Costa Unified School District. AAPAC's statements are its own. AAPAC events are open to all regardless of race, color, sex, gender identity, religion, national origin, or sexual orientation.</p>
+      <p class="fine">The African American Parent Advisory Council of Kensington Elementary School, West Contra Costa Unified School District. AAPAC’s statements are its own. AAPAC events are open to all regardless of race, color, sex, gender identity, religion, national origin, or sexual orientation.</p>
       <p class="fine base-links"><a href="privacy.html">Privacy and accessibility</a><span>Updated <time datetime="2026-11-21">November 21, 2026</time></span><a href="#main">Back to top</a></p>
     </div>
   </div>
@@ -1007,6 +1035,9 @@ footer a { color: var(--on-deep); }
     var vImg = dlg.querySelector(".viewer-img"), vCap = dlg.querySelector(".viewer-cap"), vNum = dlg.querySelector(".viewer-count");
     var idx = 0, opener = null, sx = null;
     var big = function (f) { return f.querySelector("a").getAttribute("href").replace(/\.jpg$/, ".webp"); };
+    var smooth = !!document.startViewTransition && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    var named = function (el, on) { if (el) { el.style.viewTransitionName = on ? "photo" : ""; } };
+    var thumb = function (i) { return figs[i].querySelector("img"); };
     var show = function (i) {
       idx = (i + figs.length) % figs.length;
       var f = figs[idx];
@@ -1016,13 +1047,35 @@ footer a { color: var(--on-deep); }
       new Image().src = big(figs[(idx + 1) % figs.length]);
     };
     figs.forEach(function (f, i) {
-      f.querySelector("a").addEventListener("click", function (e) { e.preventDefault(); opener = this; show(i); dlg.showModal(); });
+      f.querySelector("a").addEventListener("click", function (e) { e.preventDefault(); open(i, this); });
     });
-    dlg.querySelector("[data-close]").addEventListener("click", function () { dlg.close(); });
+    var open = function (i, link) {
+      opener = link;
+      if (!smooth) { show(i); dlg.showModal(); return; }
+      var t = thumb(i), pre = new Image(), done = false;
+      var go = function (ok) {
+        if (done) { return; } done = true;
+        if (!ok) { show(i); dlg.showModal(); return; }
+        named(t, true);
+        document.startViewTransition(function () { named(t, false); show(i); named(vImg, true); dlg.showModal(); }).finished.then(function () { named(vImg, false); });
+      };
+      pre.src = big(figs[i]);
+      if (pre.decode) { pre.decode().then(function () { go(true); }, function () { go(false); }); } else { go(false); }
+      setTimeout(function () { go(false); }, 450);
+    };
+    var shut = function () {
+      if (!dlg.open) { return; }
+      var t = thumb(idx), r = t.getBoundingClientRect();
+      if (!smooth || r.bottom < 0 || r.top > window.innerHeight) { dlg.close(); return; }
+      named(vImg, true);
+      document.startViewTransition(function () { named(vImg, false); named(t, true); dlg.close(); }).finished.then(function () { named(t, false); });
+    };
+    dlg.addEventListener("cancel", function (e) { e.preventDefault(); shut(); });
+    dlg.querySelector("[data-close]").addEventListener("click", shut);
     dlg.querySelector(".viewer-prev").addEventListener("click", function () { show(idx - 1); });
     dlg.querySelector(".viewer-next").addEventListener("click", function () { show(idx + 1); });
     dlg.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") { show(idx - 1); } else if (e.key === "ArrowRight") { show(idx + 1); } });
-    dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.classList.contains("viewer-fig")) { dlg.close(); } });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.classList.contains("viewer-fig")) { shut(); } });
     dlg.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
     dlg.addEventListener("touchend", function (e) { if (sx === null) { return; } var dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 50) { show(idx + (dx < 0 ? 1 : -1)); } });
     dlg.addEventListener("close", function () { if (opener) { opener.focus(); } });
@@ -1037,6 +1090,22 @@ footer a { color: var(--on-deep); }
       });
     });
   });
+  var nx = document.querySelector("[data-next]");
+  if (nx) {
+    var up = [].slice.call(document.querySelectorAll(".next li:not([hidden])")).filter(function (li) { return /AAPAC/.test(li.querySelector(".what").textContent); })[0];
+    if (up) { var when = up.querySelector(".when").cloneNode(true), tag = when.querySelector(".soon"); if (tag) { tag.parentNode.removeChild(tag); } nx.textContent = up.querySelector(".what").textContent + ", " + when.textContent.trim().replace(" · ", " at ").replace(/([A-Z][a-z]{2}) (\d{1,2})\b/, "$1\u00a0$2").replace(/ (AM|PM)/, "\u00a0$1") + "."; }
+    else { nx.textContent = "New dates for next school year are coming. Sign up and we will let you know."; }
+  }
+  var share = document.querySelector("[data-share]");
+  if (share && (navigator.share || navigator.clipboard)) {
+    share.hidden = false;
+    var shareLabel = share.textContent;
+    share.addEventListener("click", function () {
+      var data = { title: "Kensington AAPAC", text: "Kensington Elementary’s African American Parent Advisory Council: dates, the weekly update and how to help.", url: "https://kensingtonaapac.org/" };
+      if (navigator.share) { navigator.share(data).catch(function () {}); return; }
+      navigator.clipboard.writeText(data.url).then(function () { share.textContent = "Link copied"; setTimeout(function () { share.textContent = shareLabel; }, 1800); });
+    });
+  }
   var bar = document.createElement("div");
   bar.className = "progress"; bar.setAttribute("aria-hidden", "true"); document.body.appendChild(bar);
   var busy = false;
@@ -1067,7 +1136,7 @@ footer a { color: var(--on-deep); }
     var hero = document.querySelector(".opening");
     var idle = new IntersectionObserver(function (entries) { entries.forEach(function (e) { e.target.classList.toggle("still", !e.isIntersecting); }); });
     [].forEach.call(document.querySelectorAll(".opening, .masthead, .band, .road, footer"), function (el) { idle.observe(el); });
-    var picks = [].slice.call(document.querySelectorAll(".block .eyebrow, .band .eyebrow, h2.title, .plan li, .did li, .card, .subscribe, .record-list li, .ideas li, .theme, .road li, .gallery figure, .statement p, .mission-line, .goals li, .facts li, .faq"))
+    var picks = [].slice.call(document.querySelectorAll(".block .eyebrow, .band .eyebrow, h2.title, .plan li, .did li, .card, .subscribe, .record-list li, .ideas li, .theme, .road li, .gallery figure, .statement p, .mission-line, .goals li, .facts li, .faq, .steps li"))
       .filter(function (el) { return !el.hidden && el.offsetParent !== null && !el.closest("#help"); });
     var fold = window.innerHeight, tops = picks.map(function (el) { return el.getBoundingClientRect().top; });
     var lands = typeof KeyframeEffect !== "undefined" && "pseudoElement" in KeyframeEffect.prototype;
@@ -1078,7 +1147,7 @@ footer a { color: var(--on-deep); }
         var el = e.target, d = Math.min(k, 4) * 60; seen.unobserve(el);
         if (el.animate) {
           el.animate([{ opacity: 0, transform: "translateY(18px)" }, { opacity: 1, transform: "none" }], { duration: 700, delay: d, easing: "cubic-bezier(.2, .8, .2, 1)", fill: "backwards" });
-          if (lands && el.matches(".plan li, .goals li, .record-list li, .card")) { el.animate([{ opacity: 0 }, { opacity: .9, offset: .45 }, { opacity: 0 }], { duration: 1300, delay: d, easing: "ease-in-out", pseudoElement: "::after" }); }
+          if (lands && el.matches(".plan li, .goals li, .record-list li, .card, .steps li")) { el.animate([{ opacity: 0 }, { opacity: .9, offset: .45 }, { opacity: 0 }], { duration: 1300, delay: d, easing: "ease-in-out", pseudoElement: "::after" }); }
         }
         el.classList.remove("reveal"); k += 1;
       });
