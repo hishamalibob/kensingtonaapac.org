@@ -128,7 +128,7 @@ h1 { font-family: var(--font-display); font-size: clamp(2.1rem, 7.4vw, 3.5rem); 
 .detail { display: block; color: var(--soft); font-size: 0.96rem; margin-top: 4px; }
 .cal { display: block; font-family: var(--font-ui); font-size: 0.88rem; color: var(--soft); margin-top: 6px; }
 .cal a { display: inline-block; padding: 6px 2px; }
-.next li + li, .dates li + li { border-top: 1px solid var(--rule); margin-top: 14px; padding-top: 14px; }
+.next li:not([hidden]) ~ li, .dates li:not([hidden]) ~ li { border-top: 1px solid var(--rule); margin-top: 14px; padding-top: 14px; }
 
 /* Sections */
 .block { padding: 48px 0; border-top: 1px solid var(--rule); }
@@ -433,6 +433,20 @@ footer a { color: var(--on-deep); }
         </ul>
         <p class="next-more"><a href="#calendar">Add these dates to your calendar</a></p>
       </aside>
+      <script>
+      (function () {
+        var box = document.currentScript.previousElementSibling, today = new Date(); today.setHours(0, 0, 0, 0);
+        var day = function (s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); };
+        var shown = 0;
+        [].slice.call(box.querySelectorAll("li[data-until]")).forEach(function (li) {
+          var diff = Math.round((day(li.getAttribute("data-until")) - today) / 86400000);
+          if (diff < 0 || shown >= 3) { li.hidden = true; return; }
+          shown += 1;
+          if (diff <= 1) { var b = document.createElement("span"); b.className = "soon"; b.textContent = diff === 0 ? "Today" : "Tomorrow"; li.querySelector(".when").insertBefore(b, li.querySelector(".when").firstChild); }
+        });
+        if (!shown) { box.hidden = true; }
+      })();
+      </script>
     </div>
   </div>
 
@@ -734,10 +748,6 @@ footer a { color: var(--on-deep); }
   document.querySelectorAll("ul[data-max]").forEach(function (list) {
     var max = +list.getAttribute("data-max");
     [].slice.call(list.querySelectorAll("li:not([hidden])")).slice(max).forEach(function (li) { li.hidden = true; });
-  });
-  document.querySelectorAll(".next li[data-until]:not([hidden])").forEach(function (el) {
-    var diff = Math.round((day(el.getAttribute("data-until")) - today) / 86400000);
-    if (diff === 0 || diff === 1) { var b = document.createElement("span"); b.className = "soon"; b.textContent = diff === 0 ? "Today" : "Tomorrow"; el.querySelector(".when").prepend(b); }
   });
   document.querySelectorAll(".next ul, .dates").forEach(function (list) {
     var first = list.querySelector("li:not([hidden])");
