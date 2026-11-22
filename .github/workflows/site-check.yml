@@ -1,0 +1,128 @@
+name: Site check
+
+# Checks kensingtonaapac.org every hour. If something is wrong it opens an
+# issue in this repository (GitHub emails the owner) and closes it again when
+# the site is back to normal. Once a week it also checks the outside links.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+    - cron: "41 15 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: site-check
+  cancel-in-progress: false
+
+jobs:
+  uptime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SITE: https://kensingtonaapac.org
+    steps:
+      - name: Check the site, the calendar, HTTPS and the domain
+        id: check
+        shell: bash
+        run: |
+          set -u
+          problems=""
+          add() { problems="${problems}- $1"$'\n'; }
+          check_url() {
+            local url="$1" want="$2" ok=0 code=000 body=""
+            for attempt in 1 2 3; do
+              if body=$(curl -sS -L --max-time 25 -w '\n%{http_code}' "$url" 2>/dev/null); then
+                code=$(tail -n1 <<<"$body")
+              else
+                code=000
+              fi
+              if [ "$code" = "200" ] && grep -qF "$want" <<<"$body"; then ok=1; break; fi
+              sleep 30
+            done
+            [ "$ok" = 1 ] || add "$url did not load correctly (status $code)."
+          }
+          check_url "$SITE/" "Kensington AAPAC"
+          check_url "$SITE/calendar.ics" "BEGIN:VCALENDAR"
+          host="${SITE#https://}"
+          end=$(echo | openssl s_client -servername "$host" -connect "$host:443" 2>/dev/null | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
+          if [ -n "$end" ]; then
+            days=$(( ( $(date -d "$end" +%s) - $(date +%s) ) / 86400 ))
+            [ "$days" -ge 14 ] || add "The HTTPS certificate ends in $days days ($end). GitHub normally renews it on its own; check Settings > Pages."
+          else
+            add "Could not read the HTTPS certificate for $host."
+          fi
+          exp=$(curl -sS -L --max-time 25 "https://rdap.org/domain/$host" 2>/dev/null | jq -r '[.events[]? | select(.eventAction=="expiration") | .eventDate][0] // empty' 2>/dev/null)
+          if [ -n "$exp" ]; then
+            ddays=$(( ( $(date -d "$exp" +%s) - $(date +%s) ) / 86400 ))
+            [ "$ddays" -ge 60 ] || add "The domain registration ends in $ddays days ($exp). Renew it at Porkbun."
+          fi
+          printf '%s' "$problems" > problems.txt
+          if [ -s problems.txt ]; then cat problems.txt; else echo "All checks passed."; fi
+
+      - name: Open, update or close the alert
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const problems = fs.readFileSync('problems.txt', 'utf8').trim();
+            const { owner, repo } = context.repo;
+            const when = new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }) + ' Pacific';
+            const open = await github.rest.issues.listForRepo({ owner, repo, state: 'open', labels: 'site-check' });
+            const issue = open.data[0];
+            if (problems) {
+              const body = `Checked ${when}.\n\n${problems}\n\nThis issue closes itself when a later check passes.`;
+              if (!issue) {
+                await github.rest.issues.create({ owner, repo, labels: ['site-check'],
+                  title: 'kensingtonaapac.org needs attention',
+                  body: `@${owner} the hourly site check found a problem.\n\n${body}` });
+              } else {
+                const comments = await github.rest.issues.listComments({ owner, repo, issue_number: issue.number, per_page: 100 });
+                const last = comments.data.length ? comments.data[comments.data.length - 1].body : issue.body;
+                if (!last.includes(problems)) {
+                  await github.rest.issues.createComment({ owner, repo, issue_number: issue.number, body });
+                }
+              }
+              core.setFailed(problems);
+            } else if (issue) {
+              await github.rest.issues.createComment({ owner, repo, issue_number: issue.number, body: `Back to normal as of ${when}.` });
+              await github.rest.issues.update({ owner, repo, issue_number: issue.number, state: 'closed' });
+            }
+
+  links:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '41 15 * * 1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check every outside link on the home page
+        shell: bash
+        run: |
+          set -u
+          page=$(curl -sS -L --max-time 25 https://kensingtonaapac.org/)
+          broken=""
+          while read -r url; do
+            [ -z "$url" ] && continue
+            case "$url" in https://calendar.google.com/*) continue ;; esac
+            code=$(curl -sS -o /dev/null -L --max-time 25 -A "Mozilla/5.0 (site link check)" -w '%{http_code}' "$url" 2>/dev/null || true)
+            [ -n "$code" ] || code=000
+            case "$code" in 2??|3??|401|403|405|429) ;; *) broken="${broken}- ${url} (status ${code})"$'\n' ;; esac
+          done < <(grep -o 'href="https://[^"]*"' <<<"$page" | sed 's/^href="//; s/"$//; s/&amp;/\&/g' | sort -u)
+          printf '%s' "$broken" > broken.txt
+          if [ -s broken.txt ]; then cat broken.txt; else echo "All outside links answered."; fi
+
+      - name: Report broken links
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const broken = fs.readFileSync('broken.txt', 'utf8').trim();
+            const { owner, repo } = context.repo;
+            const open = await github.rest.issues.listForRepo({ owner, repo, state: 'open', labels: 'link-check' });
+            if (broken && !open.data.length) {
+              await github.rest.issues.create({ owner, repo, labels: ['link-check'],
+                title: 'Some links on kensingtonaapac.org may be broken',
+                body: `@${owner} the weekly link check could not open these links:\n\n${broken}\n\nSome sites block automated checks, so open each one in a browser before changing anything. Close this issue when done.` });
+            }
