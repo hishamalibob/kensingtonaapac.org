@@ -64,7 +64,7 @@ jobs:
           if [ -s problems.txt ]; then cat problems.txt; else echo "All checks passed."; fi
 
       - name: Open, update or close the alert
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
@@ -114,7 +114,7 @@ jobs:
           if [ -s broken.txt ]; then cat broken.txt; else echo "All outside links answered."; fi
 
       - name: Report broken links
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
