@@ -20,7 +20,7 @@ Source for kensingtonaapac.org, the site of the African American Parent Advisory
 2. Change the eyebrow line ("Week of ...").
 3. Add the newest line at the top of "What we did". Keep what is public: no private conversations, no names of families or children.
 4. Rewrite "What comes next", each item with its "Why".
-5. In "Coming up" and "Dates", add new items. Each dated item carries data-until="YYYY-MM-DD" and hides itself after that day.
+5. In "Coming up" and "Dates", add new items. Each dated item carries data-until="YYYY-MM-DD" and hides itself after that day; data-from="YYYY-MM-DD" makes an item appear from that day. "Coming up" shows the next three. "What we did" shows the latest five and folds the rest behind a button on its own.
 6. Add any new AAPAC date to calendar.ics too (give it a new UID; keep times in UTC).
 7. Change the "Updated" date in the footer and the lastmod date in sitemap.xml.
 
@@ -32,4 +32,4 @@ Source for kensingtonaapac.org, the site of the African American Parent Advisory
 
 ## Site check
 
-.github/workflows/site-check.yml checks the site every hour: the home page, the calendar file, the HTTPS certificate and the domain registration. If something is wrong it opens an issue here, which GitHub emails to the owner, and it closes the issue when the site is back to normal. Every Monday it also checks the outside links. To run it by hand, open the Actions tab, choose Site check, then Run workflow. GitHub pauses scheduled checks in a repository with no activity for 60 days; the weekly update keeps it active.
+.github/workflows/site-check.yml checks the site every hour: the home page, the calendar file, the HTTPS certificate and the domain registration. If something is wrong it opens an issue here, which GitHub emails to the owner, and it closes the issue when the site is back to normal. Every Monday it also checks the outside links. To run it by hand, open the Actions tab, choose Site check, then Run workflow. It also opens a reminder issue when the "Week of" line on the site is more than eight days old, and closes it after the update. GitHub pauses scheduled checks in a repository with no activity for 60 days; the weekly update keeps it active.

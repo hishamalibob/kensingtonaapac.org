@@ -17,7 +17,9 @@ body { margin: 0; min-height: 100vh; display: grid; place-items: center; backgro
 .flag i:nth-child(1) { background: #c8102e; } .flag i:nth-child(2) { background: #0c0c0c; } .flag i:nth-child(3) { background: #0a7a3d; }
 h1 { font-family: "Young Serif", Georgia, serif; font-weight: 400; font-size: 2rem; line-height: 1.15; margin: 0 0 10px; }
 p { color: var(--soft); margin: 0 0 22px; line-height: 1.5; }
-a { display: inline-flex; min-height: 48px; align-items: center; padding: 0 20px; border-radius: 10px; background: var(--btn); color: var(--btn-ink); font-weight: 600; text-decoration: none; }
+main > a { display: inline-flex; min-height: 48px; align-items: center; padding: 0 20px; border-radius: 10px; background: var(--btn); color: var(--btn-ink); font-weight: 600; text-decoration: none; }
+.quick { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.quick a { display: inline-block; padding: 8px 0; color: var(--btn); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -26,6 +28,12 @@ a { display: inline-flex; min-height: 48px; align-items: center; padding: 0 20px
   <h1>We couldn't find that page.</h1>
   <p>It may have moved. Everything AAPAC shares is on our home page.</p>
   <a href="/">Go to kensingtonaapac.org</a>
+  <ul class="quick">
+    <li><a href="/#this-week">This week</a></li>
+    <li><a href="/#dates">Dates</a></li>
+    <li><a href="/#share">Share your ideas</a></li>
+    <li><a href="mailto:hello@kensingtonaapac.org">hello@kensingtonaapac.org</a></li>
+  </ul>
 </main>
 </body>
 </html>
