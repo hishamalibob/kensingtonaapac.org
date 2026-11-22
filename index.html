@@ -37,14 +37,31 @@
 @font-face { font-family: "Figtree"; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/figtree-latin-500-normal.woff2) format("woff2"); }
 @font-face { font-family: "Figtree"; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/figtree-latin-600-normal.woff2) format("woff2"); }
 @font-face { font-family: "Figtree"; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/figtree-latin-700-normal.woff2) format("woff2"); }
+/* Stand-in fonts sized to match ours, so text doesn't jump when the web fonts arrive */
+@font-face { font-family: "YS Fallback G"; src: local("Georgia"); size-adjust: 112.9%; }
+@font-face { font-family: "YS Fallback T"; src: local("Times New Roman"), local("TimesNewRomanPSMT"), local("Liberation Serif"), local("LiberationSerif"), local("Tinos"); size-adjust: 122.2%; }
+@font-face { font-family: "YS Fallback N"; src: local("Noto Serif"), local("NotoSerif"); size-adjust: 104.9%; }
+@font-face { font-family: "YS Fallback D"; src: local("DejaVu Serif"), local("DejaVuSerif"); size-adjust: 97.8%; }
+@font-face { font-family: "SS Fallback G"; font-weight: 100 500; src: local("Georgia"); size-adjust: 107.2%; }
+@font-face { font-family: "SS Fallback G"; font-weight: 600 900; src: local("Georgia Bold"), local("Georgia-Bold"); size-adjust: 93.4%; }
+@font-face { font-family: "SS Fallback T"; font-weight: 100 500; src: local("Times New Roman"), local("TimesNewRomanPSMT"), local("Liberation Serif"), local("LiberationSerif"), local("Tinos"); size-adjust: 117%; }
+@font-face { font-family: "SS Fallback T"; font-weight: 600 900; src: local("Times New Roman Bold"), local("TimesNewRomanPS-BoldMT"), local("Liberation Serif Bold"), local("LiberationSerif-Bold"), local("Tinos Bold"); size-adjust: 110.9%; }
+@font-face { font-family: "SS Fallback N"; font-weight: 100 500; src: local("Noto Serif"), local("NotoSerif"); size-adjust: 99.5%; }
+@font-face { font-family: "SS Fallback N"; font-weight: 600 900; src: local("Noto Serif Bold"), local("NotoSerif-Bold"); size-adjust: 95.2%; }
+@font-face { font-family: "SS Fallback D"; font-weight: 100 500; src: local("DejaVu Serif"), local("DejaVuSerif"); size-adjust: 92.5%; }
+@font-face { font-family: "SS Fallback D"; font-weight: 600 900; src: local("DejaVu Serif Bold"), local("DejaVuSerif-Bold"); size-adjust: 85.5%; }
+@font-face { font-family: "Fig Fallback A"; font-weight: 100 500; src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("LiberationSans"), local("Arimo"); size-adjust: 101.9%; }
+@font-face { font-family: "Fig Fallback A"; font-weight: 600 900; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"); size-adjust: 96.4%; }
+@font-face { font-family: "Fig Fallback D"; font-weight: 100 500; src: local("DejaVu Sans"), local("DejaVuSans"); size-adjust: 90.4%; }
+@font-face { font-family: "Fig Fallback D"; font-weight: 600 900; src: local("DejaVu Sans Bold"), local("DejaVuSans-Bold"); size-adjust: 81%; }
 :root {
   --paper: #ffffff; --tint: #f1f5f2; --ink: #171a19; --soft: #4a5650; --rule: #d9e0db;
   --green: #17683f; --green-deep: #0f3d27; --gold: #b97f08; --gold-bright: #f0b93a; --on-deep: #f4f7f5;
   --btn: #17683f; --btn-ink: #ffffff; --flag-black: #0c0c0c; --flag-edge: transparent; --flag-mid: #0c0c0c;
   --shadow: 0 1px 2px rgba(15, 61, 39, 0.05), 0 10px 28px -14px rgba(15, 61, 39, 0.22);
-  --font-display: "Young Serif", Georgia, "Times New Roman", serif;
-  --font-text: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-ui: "Figtree", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Young Serif", "YS Fallback G", "YS Fallback T", "YS Fallback N", "YS Fallback D", Georgia, "Times New Roman", serif;
+  --font-text: "Source Serif 4", "SS Fallback G", "SS Fallback T", "SS Fallback N", "SS Fallback D", Georgia, "Times New Roman", serif;
+  --font-ui: "Figtree", "Fig Fallback A", "Fig Fallback D", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -73,9 +90,11 @@ section, main [id] { scroll-margin-top: 16px; }
 .skip { position: absolute; left: 12px; top: -80px; background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 8px; z-index: 60; font-family: var(--font-ui); font-weight: 600; text-decoration: none; }
 .skip:focus { top: calc(12px + env(safe-area-inset-top, 0px)); }
 .ui { font-family: var(--font-ui); }
+.detail a[target="_blank"], .did a[target="_blank"], .lede a[target="_blank"] { padding-right: .95em; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3 1h6v6M9 1 1.5 8.5' fill='none' stroke='%2317683f' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right center / .62em .62em; }
+@media (prefers-color-scheme: dark) { .detail a[target="_blank"], .did a[target="_blank"], .lede a[target="_blank"] { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3 1h6v6M9 1 1.5 8.5' fill='none' stroke='%2363c891' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); } }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 main:focus { outline: none; }
-.foot-col a[target="_blank"]::after, .detail a[target="_blank"]::after, .did a[target="_blank"]::after, .lede a[target="_blank"]::after { content: ""; display: inline-block; width: 0.62em; height: 0.62em; margin-left: 0.3em; vertical-align: 0.05em; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3 1h6v6M9 1 1.5 8.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3 1h6v6M9 1 1.5 8.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+.foot-col a[target="_blank"]::after { content: ""; display: inline-block; width: 0.62em; height: 0.62em; margin-left: 0.3em; vertical-align: 0.05em; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3 1h6v6M9 1 1.5 8.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3 1h6v6M9 1 1.5 8.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
 
 /* Masthead */
 .masthead { position: relative; background: var(--paper); border-bottom: 1px solid var(--rule); padding-top: calc(16px + env(safe-area-inset-top, 0px)); }
@@ -114,6 +133,7 @@ h1 { font-family: var(--font-display); font-size: clamp(2.1rem, 7.4vw, 3.5rem); 
 .btn:hover { filter: brightness(1.08); text-decoration: none; }
 .btn:active { transform: translateY(1px); }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:active { transform: none; } }
+@media (max-width: 479px) { .go { flex-direction: column; align-items: stretch; } .go .btn { width: 100%; } }
 .creds { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 24px; font-family: var(--font-ui); font-size: 0.9rem; font-weight: 500; color: var(--soft); }
 .creds li { display: flex; align-items: center; gap: 8px; }
 .creds li::before { content: ""; flex: none; width: 18px; height: 18px; border-radius: 999px; background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.4l2.6 2.5L12 5.4' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat; }
@@ -138,8 +158,9 @@ h1 { font-family: var(--font-display); font-size: clamp(2.1rem, 7.4vw, 3.5rem); 
 h2.title { font-family: var(--font-display); font-size: clamp(1.7rem, 5.2vw, 2.35rem); line-height: 1.15; }
 .lede { margin-top: 12px; color: var(--soft); max-width: 40em; }
 .cols { display: grid; gap: 28px; margin-top: 28px; }
+.wrap > .cols:first-child { margin-top: 0; }
 h3 { font-family: var(--font-ui); font-weight: 700; font-size: 1.05rem; line-height: 1.3; }
-.did li { display: grid; grid-template-columns: 4.6em 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--rule); }
+.did li { display: grid; grid-template-columns: 4em 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--rule); }
 .did li:first-child { border-top: 0; }
 .did .d { font-family: var(--font-ui); font-weight: 700; font-size: 0.9rem; color: var(--green); padding-top: 2px; font-variant-numeric: tabular-nums; }
 .plan { margin-top: 14px; }
@@ -206,6 +227,7 @@ h3 { font-family: var(--font-ui); font-weight: 700; font-size: 1.05rem; line-hei
 .ask li { display: flex; gap: 12px; align-items: baseline; }
 .ask li::before { counter-increment: q; content: counter(q); font-family: var(--font-ui); font-weight: 700; font-size: 0.85rem; color: var(--btn-ink); background: var(--btn); border-radius: 999px; width: 1.7em; height: 1.7em; display: inline-flex; align-items: center; justify-content: center; flex: none; transform: translateY(-1px); }
 .contact { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-family: var(--font-ui); }
+.mail { display: inline-flex; align-items: center; gap: 10px; }
 .copy { font: inherit; font-weight: 600; font-size: 0.9rem; min-height: 44px; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
 
 /* Photos */
@@ -266,7 +288,7 @@ details > div p + p, details > div p + ul, details > div ul + p { margin-top: 12
 .help li > span { flex: 1 1 11em; min-width: 0; }
 .help b { display: block; font-family: var(--font-ui); line-height: 1.3; }
 .help span span { display: block; font-size: 0.93rem; color: var(--soft); }
-.help a { flex: none; font-family: var(--font-ui); font-weight: 700; text-decoration: none; background: var(--btn); color: var(--btn-ink); border-radius: 10px; min-height: 48px; min-width: 5.2em; padding: 10px 14px; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.help a { flex: none; font-family: var(--font-ui); font-weight: 700; text-decoration: none; background: var(--btn); color: var(--btn-ink); border-radius: 10px; min-height: 48px; min-width: 9.3em; padding: 10px 14px; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* Footer */
 footer { position: relative; background: var(--green-deep); color: var(--on-deep); padding: 52px 0 calc(36px + env(safe-area-inset-bottom, 0px)); }
@@ -546,7 +568,7 @@ footer a { color: var(--on-deep); }
   <div class="opening">
     <div class="wrap">
       <div>
-        <h1>Working together for <span class="hl">every child</span> at Kensington.</h1>
+        <h1>Working together for <span class="hl">every child</span> at&nbsp;Kensington.</h1>
         <p class="intro">We are parents and caregivers who make up Kensington Elementary's African American Parent Advisory Council. We support one another's children, welcome new families, and work alongside the principal and staff so the school hears from Black families early.</p>
         <p class="go"><a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLScklE4NMaAyp9EZCpc3yJ_Gf9DlY2BzbIJt5dyBtTvbOxYHVw/viewform" target="_blank" rel="noopener">Share your ideas<span class="sr-only"> (opens in a new tab)</span></a><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeUNwGSZ4dnDfI4pCELUJx-YYnWdaFLD6mLoXSEh0PaAme2sg/viewform" target="_blank" rel="noopener">Sign up for updates<span class="sr-only"> (opens in a new tab)</span></a></p>
         <ul class="creds">
@@ -695,8 +717,7 @@ footer a { color: var(--on-deep); }
           <p class="go"><a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLScklE4NMaAyp9EZCpc3yJ_Gf9DlY2BzbIJt5dyBtTvbOxYHVw/viewform" target="_blank" rel="noopener">Open the form<span class="sr-only"> (opens in a new tab)</span></a></p>
           <div class="contact">
             <span>Prefer to write?</span>
-            <a href="mailto:hello@kensingtonaapac.org" id="email-value">hello@kensingtonaapac.org</a>
-            <button class="copy" type="button" data-copy="email-value">Copy</button>
+            <span class="mail"><a href="mailto:hello@kensingtonaapac.org" id="email-value">hello@kensingtonaapac.org</a><button class="copy" type="button" data-copy="email-value">Copy</button></span>
           </div>
         </div>
         <div class="card">
@@ -763,7 +784,7 @@ footer a { color: var(--on-deep); }
       </div>
       <ul class="facts">
         <li><b>Who we are</b>Parents, caregivers, grandparents, staff and neighbors. We center Black, African, Caribbean and multiracial students and their families, and everyone who shares that commitment is welcome.</li>
-        <li><b>Who leads</b>Hisham Ali Bob and Faith Agyekum, co-presidents, both Kensington parents.</li>
+        <li><b>Who leads</b>Hisham Ali Bob and Faith Agyekum, co&#8209;presidents, both Kensington parents.</li>
         <li><b>Who we work with</b>Principal Kim Jordan and the school staff, the PTA, the Kensington Education Foundation and the Culture and Community Coalition.</li>
       </ul>
       <div class="faq">
@@ -830,7 +851,7 @@ footer a { color: var(--on-deep); }
           <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
           <span><span class="mark-name">Kensington AAPAC</span><span class="mark-sub">African American Parent Advisory Council</span></span>
         </a>
-        <p class="hope">Working together for every child at Kensington.</p>
+        <p class="hope">Working together for every child at&nbsp;Kensington.</p>
       </div>
       <nav class="foot-col foot-nav" aria-label="On this site">
         <h2>On this site</h2>
