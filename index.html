@@ -232,7 +232,7 @@ h3 { font-family: var(--font-ui); font-weight: 700; font-size: 1.05rem; line-hei
 
 /* Photos */
 .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 26px; }
-.gallery a { display: block; border-radius: 12px; overflow: hidden; background: var(--tint); }
+.gallery a { display: block; border-radius: 12px; overflow: hidden; overflow: clip; background: var(--tint); }
 .gallery picture { display: block; }
 .gallery img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform .3s ease; }
 .gallery a:hover img { transform: scale(1.02); }
@@ -358,9 +358,10 @@ footer a { color: var(--on-deep); }
     --sheen: linear-gradient(180deg, rgba(255, 255, 255, .7), rgba(255, 255, 255, 0) 70%);
     --lift: 0 2px 4px rgba(15, 61, 39, .06), 0 20px 40px -20px rgba(15, 61, 39, .42);
     --dot: rgba(15, 61, 39, .1);
+    --sheet-1: rgba(255, 255, 255, .34); --sheet-2: rgba(255, 255, 255, .15);
   }
   @media (prefers-color-scheme: dark) {
-    :root { --deep-1: #0d3622; --deep-2: #06150d; --green-grad: linear-gradient(180deg, #7fd8a7 0%, #63c891 55%, #4cb27a 100%); --sheen: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, 0) 70%); --lift: 0 20px 44px -20px rgba(0, 0, 0, .8); --dot: rgba(255, 255, 255, .06); }
+    :root { --deep-1: #0d3622; --deep-2: #06150d; --green-grad: linear-gradient(180deg, #7fd8a7 0%, #63c891 55%, #4cb27a 100%); --sheen: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, 0) 70%); --lift: 0 20px 44px -20px rgba(0, 0, 0, .8); --dot: rgba(255, 255, 255, .06); --sheet-1: rgba(255, 255, 255, .13); --sheet-2: rgba(255, 255, 255, .06); }
   }
 
   /* Deep, textured surfaces */
@@ -434,8 +435,9 @@ footer a { color: var(--on-deep); }
 
   /* Hover, only where a mouse can hover */
   @media (hover: hover) {
-    .plan li, .goals li, .help li, .record-list li, .ideas li { transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease); }
-    .plan li:hover, .goals li:hover, .help li:hover, .record-list li:hover { transform: translateY(-3px); box-shadow: var(--lift); border-color: color-mix(in srgb, var(--gold-bright) 60%, var(--rule)); }
+    .plan li, .goals li, .help li, .record-list li, .ideas li, .card { transition: transform .35s var(--ease), border-color .35s var(--ease); }
+    .plan li:hover, .goals li:hover, .help li:hover, .record-list li:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--gold-bright) 60%, var(--rule)); }
+    .plan li:hover::after, .goals li:hover::after, .help li:hover::after, .record-list li:hover::after, .card:hover::after { opacity: 1; }
     .band .ideas li:hover { transform: translateY(-3px); border-color: rgba(240, 185, 58, .75); }
     .gallery a:hover img { transform: scale(1.045); }
     .btn:hover::after, .help a:hover::after { transform: translateX(130%); transition: transform .75s var(--ease); }
@@ -461,6 +463,34 @@ footer a { color: var(--on-deep); }
     .opening::after { width: 55%; height: 120%; left: -18%; bottom: -60%; background: radial-gradient(closest-side, rgba(52, 178, 108, .28), transparent); animation: drift 30s ease-in-out -8s infinite alternate-reverse; }
     .opening.still::before, .opening.still::after { animation-play-state: paused; }
   }
+  /* Depth as you scroll: a header that lifts off the page, cards that settle into place, numbered sections */
+  .masthead { position: sticky; top: 0; z-index: 50; transition: transform .45s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); }
+  .masthead.raised { border-bottom-color: transparent; box-shadow: 0 1px 0 rgba(15, 61, 39, .07), 0 14px 34px -22px rgba(15, 61, 39, .5); }
+  .masthead.tuck:not(:focus-within) { transform: translateY(-100%); }
+  .plan li, .goals li, .help li, .record-list li, .card { position: relative; }
+  .plan li::after, .goals li::after, .help li::after, .record-list li::after, .card::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; box-shadow: var(--lift); opacity: 0; pointer-events: none; transition: opacity .35s var(--ease); }
+  .opening + .block, .band + .block, .statement + .block { box-shadow: inset 0 24px 30px -28px rgba(4, 22, 13, .34); }
+  footer { box-shadow: 0 -22px 44px -34px rgba(4, 22, 13, .55); }
+  .next { box-shadow: 0 0 0 1px rgba(255, 255, 255, .08), 0 8px 0 -5px var(--sheet-1), 0 16px 0 -10px var(--sheet-2), 0 14px 28px -18px rgba(0, 0, 0, .45), 0 40px 80px -30px rgba(0, 0, 0, .65); }
+  .gallery a { box-shadow: 0 1px 2px rgba(15, 61, 39, .06), 0 18px 36px -24px rgba(15, 61, 39, .45); }
+  main { counter-reset: sec; }
+  main > section { counter-increment: sec; }
+  main > section .eyebrow::after { content: counter(sec, decimal-leading-zero); content: counter(sec, decimal-leading-zero) / ""; order: -1; font-family: var(--font-display); font-size: 1.12rem; font-weight: 400; line-height: 1; letter-spacing: 0; text-transform: none; color: var(--ink); font-variant-numeric: lining-nums tabular-nums; }
+  .band .eyebrow::after { color: #fff; }
+  @media (prefers-color-scheme: dark) {
+    .masthead.raised { box-shadow: 0 1px 0 rgba(255, 255, 255, .06), 0 16px 38px -20px rgba(0, 0, 0, .9); }
+    .opening + .block, .band + .block, .statement + .block { box-shadow: inset 0 24px 30px -28px rgba(0, 0, 0, .7); }
+  }
+  @media (prefers-reduced-motion: reduce) { .masthead { transition: box-shadow .35s var(--ease); } }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .opening .wrap > div:first-child { animation: lag linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+      .gallery picture { animation: pan linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+      .road { view-timeline-name: --road; }
+      .road::before { transform-origin: 0 0; animation: draw-y linear both; animation-timeline: --road; animation-range: entry 35% cover 50%; }
+    }
+    @media (prefers-reduced-motion: no-preference) and (min-width: 760px) { .road::before { animation-name: draw; } }
+  }
 }
 @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes rise { from { transform: translateY(20px); } to { transform: none; } }
@@ -469,6 +499,9 @@ footer a { color: var(--on-deep); }
 @keyframes ring2 { 0% { transform: scale(1); opacity: .9; } 70%, 100% { transform: scale(2.3); opacity: 0; } }
 @keyframes sweep { 0% { transform: translateX(-110%); } 22%, 100% { transform: translateX(360%); } }
 @keyframes drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(-18%, 16%, 0) scale(1.12); } }
+@keyframes lag { to { transform: translateY(72px); opacity: .45; } }
+@keyframes pan { from { transform: scale(1.12) translateY(-4%); } to { transform: scale(1.12) translateY(4%); } }
+@keyframes draw-y { from { transform: scaleY(0); } to { transform: none; } }
 
 .print-row { margin-top: 14px; }
 .print-row button { font-family: var(--font-ui); cursor: pointer; background: transparent; }
@@ -1007,11 +1040,26 @@ footer a { color: var(--on-deep); }
   var bar = document.createElement("div");
   bar.className = "progress"; bar.setAttribute("aria-hidden", "true"); document.body.appendChild(bar);
   var busy = false;
+  var wide = window.matchMedia ? window.matchMedia("(min-width: 1140px)") : { matches: false };
+  var lastY = window.scrollY, hh = mh.offsetHeight, jumping = false, jumpTimer = 0;
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest || !e.target.closest('a[href^="#"]')) { return; }
+    jumping = true; clearTimeout(jumpTimer); jumpTimer = setTimeout(function () { jumping = false; }, 3000);
+  });
+  window.addEventListener("scrollend", function () { if (jumping) { clearTimeout(jumpTimer); jumpTimer = setTimeout(function () { jumping = false; }, 120); } });
+  var head = function () {
+    var y = window.scrollY;
+    mh.classList.toggle("raised", y > 4);
+    if (wide.matches || y <= hh) { mh.classList.remove("tuck"); lastY = y; return; }
+    if (jumping) { mh.classList.add("tuck"); lastY = y; return; }
+    if (y > lastY + 8) { mh.classList.add("tuck"); lastY = y; } else if (y < lastY - 8) { mh.classList.remove("tuck"); lastY = y; }
+  };
   var fill = function () {
     var max = document.documentElement.scrollHeight - window.innerHeight;
     bar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0).toFixed(4) + ")";
-    busy = false;
+    head(); busy = false;
   };
+  window.addEventListener("resize", function () { hh = mh.offsetHeight; });
   window.addEventListener("scroll", function () { if (!busy) { busy = true; requestAnimationFrame(fill); } }, { passive: true });
   window.addEventListener("resize", fill); fill();
   var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1022,12 +1070,16 @@ footer a { color: var(--on-deep); }
     var picks = [].slice.call(document.querySelectorAll(".block .eyebrow, .band .eyebrow, h2.title, .plan li, .did li, .card, .subscribe, .record-list li, .ideas li, .theme, .road li, .gallery figure, .statement p, .mission-line, .goals li, .facts li, .faq"))
       .filter(function (el) { return !el.hidden && el.offsetParent !== null && !el.closest("#help"); });
     var fold = window.innerHeight, tops = picks.map(function (el) { return el.getBoundingClientRect().top; });
+    var lands = typeof KeyframeEffect !== "undefined" && "pseudoElement" in KeyframeEffect.prototype;
     var seen = new IntersectionObserver(function (entries) {
       var k = 0;
       entries.forEach(function (e) {
         if (!e.isIntersecting) { return; }
-        var el = e.target; seen.unobserve(el);
-        if (el.animate) { el.animate([{ opacity: 0, transform: "translateY(18px)" }, { opacity: 1, transform: "none" }], { duration: 700, delay: Math.min(k, 4) * 60, easing: "cubic-bezier(.2, .8, .2, 1)", fill: "backwards" }); }
+        var el = e.target, d = Math.min(k, 4) * 60; seen.unobserve(el);
+        if (el.animate) {
+          el.animate([{ opacity: 0, transform: "translateY(18px)" }, { opacity: 1, transform: "none" }], { duration: 700, delay: d, easing: "cubic-bezier(.2, .8, .2, 1)", fill: "backwards" });
+          if (lands && el.matches(".plan li, .goals li, .record-list li, .card")) { el.animate([{ opacity: 0 }, { opacity: .9, offset: .45 }, { opacity: 0 }], { duration: 1300, delay: d, easing: "ease-in-out", pseudoElement: "::after" }); }
+        }
         el.classList.remove("reveal"); k += 1;
       });
     }, { rootMargin: "0px 0px -6% 0px" });
