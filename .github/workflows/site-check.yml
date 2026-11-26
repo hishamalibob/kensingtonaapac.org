@@ -97,13 +97,19 @@ jobs:
             body="Checked $when."$'\n\n'"$problems"
             if [ -n "$repair" ]; then body="$body"$'\n\n'"$repair It did not fix this."; fi
             body="$body"$'\n\n'"The README has a section called \"If something goes wrong\". This issue closes itself when a later check passes."
+            # The run is marked failed only when there is something new to tell, so a
+            # problem that lasts for days sends one alert and not one every 15 minutes.
             if [ -z "$issue" ]; then
               gh issue create --title "kensingtonaapac.org needs attention" --label site-check --body "@$owner the site check found a problem."$'\n\n'"$body" || echo "Could not open the alert."
-            else
-              last="$(gh issue view "$issue" --json body,comments --jq '(.comments | last | .body) // .body')"
-              if [[ "$last" != *"$problems"* ]]; then gh issue comment "$issue" --body "$body"; fi
+              exit 1
             fi
-            exit 1
+            last="$(gh issue view "$issue" --json body,comments --jq '(.comments | last | .body) // .body')"
+            if [[ "$last" != *"$problems"* ]]; then
+              gh issue comment "$issue" --body "$body"
+              exit 1
+            fi
+            echo "Already reported in issue #$issue and still there. No new alert sent."
+            exit 0
           fi
 
           if [ -n "$issue" ]; then
