@@ -10,9 +10,10 @@ Source for kensingtonaapac.org, the site of the African American Parent Advisory
 - calendar.ics: the AAPAC calendar people subscribe to (Google, Apple, Outlook). Add or change an event here and subscribers get it on their own.
 - aapac-meetings-2026-27.ics, kcsd-board-2026-12-10.ics: older single files, kept so earlier links still work.
 - privacy.html: privacy and accessibility page, linked from the footer.
-- og-image.png: the preview image shown when the link is shared.
+- share-2026.jpg: the preview image shown when the link is shared. og-image.png is the earlier one, kept so old shares still show a picture.
 - favicon.ico, favicon.svg, icon-192.png, icon-512.png, apple-touch-icon.png, site.webmanifest: site icons.
 - robots.txt, sitemap.xml, CNAME.
+- .github/: the automatic checks described below. Not part of the published site.
 
 ## Weekly update (about ten minutes)
 
@@ -30,6 +31,53 @@ Source for kensingtonaapac.org, the site of the African American Parent Advisory
 2. In index.html, find class="record-list". On that meeting's line, replace the text "Agenda by Dec 7" with a link: <a href="notes/2026-12-14-agenda.pdf">Agenda</a>. Do the same for the notes.
 3. Summaries name no families or children, and say what was decided and what happens next.
 
-## Site check
+## How the site looks after itself
 
-.github/workflows/site-check.yml checks the site every hour: the home page, the calendar file, the HTTPS certificate and the domain registration. If something is wrong it opens an issue here, which GitHub emails to the owner, and it closes the issue when the site is back to normal. Every Monday it also checks the outside links. To run it by hand, open the Actions tab, choose Site check, then Run workflow. It also opens a reminder issue when the "Week of" line on the site is more than eight days old, and closes it after the update. GitHub pauses scheduled checks in a repository with no activity for 60 days; the weekly update keeps it active.
+Two automatic checks live in this repository. Neither needs you unless an email arrives.
+
+**Publish guard** (.github/workflows/publish-guard.yml) runs every time files are published. It checks that the page is whole, that every photo, font and file the page uses is there, that the scripts run, that the calendar is valid and that CNAME is in place. If something is broken it waits three minutes, in case more files are still coming, and looks again. If the files are still broken it puts the last working version back and opens an issue that says what was wrong. The undone change stays in the history. To publish something the check wrongly objects to, put [skip-check] in the commit message.
+
+**Site check** (.github/workflows/site-check.yml) looks at the live site from the outside. It is set to run every 15 minutes; GitHub often runs scheduled jobs less often than asked. It checks:
+
+- the home page and every file the page uses
+- the three other ways of typing the address (http, and www with and without https), which must all forward to https://kensingtonaapac.org/
+- the HTTPS certificate (warns 14 days before it ends) and the domain registration (warns 60 days before)
+- the DNS records listed below
+- that the live site shows the newest published files
+
+If the site is down, or is not showing the newest files, it asks GitHub to publish the site again and looks once more three minutes later. If a problem remains it opens an issue, which GitHub emails to the owner, and it closes the issue when the site is back to normal. On Mondays it also checks the outside links and keeps its own schedule switched on (GitHub switches off schedules in repositories that go quiet for 60 days). It opens a reminder when the "Week of" line is more than eight days old.
+
+Both use the two scripts in .github/scripts (check.py and guard.sh) and only tools GitHub already provides, so there is nothing outside to keep up to date.
+
+A separate daily check that does not run on GitHub confirms the site is up and that the site check is still running.
+
+### Practice runs
+
+- Practice alert: Actions tab > Site check > Run workflow > tick "Practice run". It sends a practice alert email and tries the repair tools. Nothing on the site changes.
+- Fire drill: Actions tab > Publish guard > Run workflow. It breaks a practice copy on a side branch, confirms the guard repairs it, and removes the side branch. The live site is not touched.
+
+Run both after any change to the files in .github, and once or twice a year.
+
+## If something goes wrong
+
+- **"kensingtonaapac.org needs attention"**: the issue lists what is wrong.
+  - The home page did not load: a repair was already tried. Look at githubstatus.com first. If GitHub is fine, open Settings > Pages and confirm the custom domain says kensingtonaapac.org and Enforce HTTPS is ticked.
+  - A file did not load: upload that file again.
+  - A line starting with DNS: sign in to Porkbun, open the DNS records for the domain and compare them with the list below.
+  - HTTPS certificate: GitHub normally renews it on its own. If the warning stays, open Settings > Pages, remove the custom domain, save, add it back and wait up to an hour.
+  - Domain registration: renew it at Porkbun.
+- **"A change to kensingtonaapac.org was undone automatically"**: the site is fine. Fix what the issue lists and upload the files again.
+- **"kensingtonaapac.org had a short problem and recovered"**: a record only. Nothing to do.
+- **An email from Google Search Console about "Page with redirect"** that lists the http or www addresses: expected. Those addresses forward to the real one, and Google keeps only the real one in search.
+- **Going back to an earlier version by hand**: open the Commits list, find the last version that worked, open index.html there, and upload that copy again.
+
+### DNS records at Porkbun
+
+- A records for kensingtonaapac.org: 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153 (GitHub Pages)
+- CNAME for www: hishamalibob.github.io
+- MX: fwd1.porkbun.com and fwd2.porkbun.com (email forwarding for hello@)
+- TXT: the SPF line Porkbun added for forwarding, and the google-site-verification line that keeps Search Console connected
+
+### Accounts
+
+The site depends on three sign-ins: GitHub (the files), Porkbun (the domain and email forwarding) and the AAPAC Google account (Search Console and the forms). Keep two-step sign-in on for all three, and keep the recovery email and phone current.
