@@ -357,7 +357,9 @@ def dns_lookup(name, kind):
 
 def check_dns():
     problems = []
+    skipped = 0
     ok, answers = dns_lookup(DOMAIN, "A")
+    skipped += not ok
     if ok:
         ips = {a for a in answers if re.fullmatch(r"[\d.]+", a)}
         if not ips:
@@ -366,17 +368,24 @@ def check_dns():
             odd = ", ".join(sorted(ips - GITHUB_PAGES_IPS))
             problems.append(f"DNS: {DOMAIN} points to an unexpected address ({odd}). Check the DNS records at Porkbun.")
     ok, answers = dns_lookup("www." + DOMAIN, "CNAME")
+    skipped += not ok
     if ok and WWW_TARGET not in {a.rstrip(".").lower() for a in answers}:
         problems.append(f"DNS: www.{DOMAIN} should point to {WWW_TARGET}. Check the DNS records at Porkbun.")
     ok, answers = dns_lookup(DOMAIN, "MX")
+    skipped += not ok
     if ok:
         servers = {a.split()[-1].rstrip(".").lower() for a in answers if a}
         if not MAIL_SERVERS <= servers:
             problems.append(f"DNS: the mail records for hello@{DOMAIN} changed, so email to that address may not arrive. Check Email Forwarding at Porkbun.")
     ok, answers = dns_lookup(DOMAIN, "TXT")
+    skipped += not ok
     if ok and not any(a.startswith("google-site-verification=") for a in answers):
         problems.append("DNS: the Google verification record is gone, so Search Console will lose access to the site. Add it back at Porkbun (Search Console > Settings > Ownership verification shows the value).")
-    return problems
+    if skipped:
+        note = f"DNS records: {4 - skipped} of 4 looked up; the lookup service did not answer for the rest, so they were skipped this time."
+    else:
+        note = "DNS records: all 4 looked up (address, www, mail, Google verification)."
+    return problems, note
 
 
 def domain_days_left():
@@ -399,6 +408,7 @@ def domain_days_left():
 
 def check_live(repo=None):
     problems = []
+    notes = []
     flags = {"down": False, "stale": False}
 
     status, final, headers, body = fetch(SITE + "/")
@@ -431,6 +441,7 @@ def check_live(repo=None):
         with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
             results = list(pool.map(head, paths))
         broken = [(p, c) for p, c in results if c != 200]
+        notes.append(f"Home page loaded. Files the page uses: {len(paths) - len(broken)} of {len(paths)} loaded.")
         for p, c in broken[:12]:
             problems.append(f"{p} did not load (status {c}). The page uses it.")
         if len(broken) > 12:
@@ -445,18 +456,26 @@ def check_live(repo=None):
                 wanted = hashlib.sha256(fh.read()).hexdigest()
             if hashlib.sha256(body).hexdigest() != wanted:
                 flags["stale"] = True
+                notes.append("The live page is NOT the same as the newest published file.")
+            else:
+                notes.append("The live page is the same as the newest published file.")
 
     # The other ways of typing the address must all land on the real one.
+    forwarding = 0
     for other in (f"http://{DOMAIN}/", f"http://www.{DOMAIN}/", f"https://www.{DOMAIN}/"):
         code, landed, hdrs, _ = fetch(other, tries=2)
-        if code != 200 or landed.rstrip("/") != SITE:
-            if not flags["down"]:
-                detail = f"it ended at {landed} with status {code}" if code else f"no answer: {hdrs.get('error', 'unknown error')}"
-                problems.append(f"{other} should forward to {SITE}/ but {detail}.")
+        if code == 200 and landed.rstrip("/") == SITE:
+            forwarding += 1
+        elif not flags["down"]:
+            detail = f"it ended at {landed} with status {code}" if code else f"no answer: {hdrs.get('error', 'unknown error')}"
+            problems.append(f"{other} should forward to {SITE}/ but {detail}.")
+
+    notes.append(f"Other ways of typing the address: {forwarding} of 3 forward to {SITE}/.")
 
     for host in (HOST, "www." + HOST):
         try:
             days, ends = cert_days_left(host)
+            notes.append(f"HTTPS certificate for {host}: {days} days left (ends {ends}).")
             if days < CERT_WARN_DAYS:
                 problems.append(
                     f"The HTTPS certificate for {host} ends in {days} days ({ends}). GitHub normally renews it on its own. "
@@ -467,11 +486,17 @@ def check_live(repo=None):
                 problems.append(f"The HTTPS certificate for {host} could not be checked ({err}).")
 
     left = domain_days_left()
-    if left is not None and left < DOMAIN_WARN_DAYS:
-        problems.append(f"The domain registration ends in {left} days. Renew it at Porkbun.")
+    if left is None:
+        notes.append("Domain registration: the lookup service did not answer, so this was skipped this time.")
+    else:
+        notes.append(f"Domain registration: {left} days left.")
+        if left < DOMAIN_WARN_DAYS:
+            problems.append(f"The domain registration ends in {left} days. Renew it at Porkbun.")
 
-    problems.extend(check_dns())
-    return problems, flags
+    dns_problems, dns_note = check_dns()
+    problems.extend(dns_problems)
+    notes.append(dns_note)
+    return problems, flags, notes
 
 
 def main():
@@ -486,16 +511,19 @@ def main():
     live.add_argument("--out")
     args = parser.parse_args()
 
+    notes = []
     if args.mode == "files":
         problems, flags = check_files(args.dir, args.baseline), {}
     else:
-        problems, flags = check_live(args.repo)
+        problems, flags, notes = check_live(args.repo)
 
     for line in problems:
         print("- " + line)
+    for line in notes:  # what was looked at, kept apart from the list of problems
+        print("  " + line, file=sys.stderr)
     if args.out:
         with open(args.out, "w", encoding="utf-8") as fh:
-            json.dump({"problems": problems, **flags}, fh)
+            json.dump({"problems": problems, "notes": notes, **flags}, fh)
     return FOUND_PROBLEMS if problems else 0
 
 
