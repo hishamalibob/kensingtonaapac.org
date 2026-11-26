@@ -1,158 +1,198 @@
 name: Site check
 
-# Checks kensingtonaapac.org every hour. If something is wrong it opens an
-# issue in this repository (GitHub emails the owner) and closes it again when
-# the site is back to normal. Once a week it also checks the outside links.
+# Looks at kensingtonaapac.org from the outside, several times an hour when
+# GitHub's scheduler allows. When something is wrong it first tries a repair
+# (it asks GitHub to publish the site again), then opens an issue in this
+# repository, which GitHub emails to the owner. The issue closes itself when
+# the site is back to normal. On Mondays it also checks the outside links and
+# keeps this schedule from being switched off.
+#
+# Everything here uses tools already on GitHub's machines (git, python3, curl,
+# gh), so there are no outside actions that can go out of date.
 
 on:
   schedule:
-    - cron: "17 * * * *"
+    - cron: "7,22,37,52 * * * *"
     - cron: "41 15 * * 1"
   workflow_dispatch:
+    inputs:
+      practice:
+        description: "Practice run: also send a test alert and try the repair tools"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
   issues: write
+  pages: write
+  actions: write
 
 concurrency:
   group: site-check
   cancel-in-progress: false
 
+env:
+  SITE: https://kensingtonaapac.org
+  GH_TOKEN: ${{ github.token }}
+  GH_REPO: ${{ github.repository }}
+
 jobs:
-  uptime:
+  check:
+    name: Check the live site
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-    env:
-      SITE: https://kensingtonaapac.org
+    timeout-minutes: 20
     steps:
-      - name: Check the site, the calendar, HTTPS and the domain
-        id: check
+      - name: Get the site files
+        run: git clone -q --depth 1 "https://github.com/${GITHUB_REPOSITORY}.git" repo
+
+      - name: Check the live site, and try a repair if it is down
         shell: bash
         run: |
-          set -u
-          problems=""
-          add() { problems="${problems}- $1"$'\n'; }
-          check_url() {
-            local url="$1" want="$2" ok=0 code=000 body=""
-            for attempt in 1 2 3; do
-              if body=$(curl -sS -L --max-time 25 -w '\n%{http_code}' "$url" 2>/dev/null); then
-                code=$(tail -n1 <<<"$body")
-              else
-                code=000
-              fi
-              if [ "$code" = "200" ] && grep -qF "$want" <<<"$body"; then ok=1; break; fi
-              sleep 30
-            done
-            [ "$ok" = 1 ] || add "$url did not load correctly (status $code)."
+          set +e -u
+          look() { # look RESULT.json PROBLEMS.txt
+            local rc=0
+            python3 repo/.github/scripts/check.py live --repo repo --out "$1" > "$2" || rc=$?
+            if [ "$rc" -ne 0 ] && [ "$rc" -ne 10 ]; then echo "The checker could not run."; exit 1; fi
           }
-          check_url "$SITE/" "Kensington AAPAC"
-          check_url "$SITE/calendar.ics" "BEGIN:VCALENDAR"
-          host="${SITE#https://}"
-          end=$(echo | openssl s_client -servername "$host" -connect "$host:443" 2>/dev/null | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
-          if [ -n "$end" ]; then
-            days=$(( ( $(date -d "$end" +%s) - $(date +%s) ) / 86400 ))
-            [ "$days" -ge 14 ] || add "The HTTPS certificate ends in $days days ($end). GitHub normally renews it on its own; check Settings > Pages."
-          else
-            add "Could not read the HTTPS certificate for $host."
-          fi
-          exp=$(curl -sS -L --max-time 25 "https://rdap.org/domain/$host" 2>/dev/null | jq -r '[.events[]? | select(.eventAction=="expiration") | .eventDate][0] // empty' 2>/dev/null)
-          if [ -n "$exp" ]; then
-            ddays=$(( ( $(date -d "$exp" +%s) - $(date +%s) ) / 86400 ))
-            [ "$ddays" -ge 60 ] || add "The domain registration ends in $ddays days ($exp). Renew it at Porkbun."
-          fi
-          printf '%s' "$problems" > problems.txt
-          if [ -s problems.txt ]; then cat problems.txt; else echo "All checks passed."; fi
+          look first.json first.txt
+          cp first.json final.json; cp first.txt final.txt
+          down=$(jq -r '.down // false' first.json)
+          stale=$(jq -r '.stale // false' first.json)
+          age=$(( ( $(date +%s) - $(git -C repo log -1 --format=%ct) ) / 60 ))
+          : > repair.txt; : > healed.txt
 
-      - name: Check that the weekly update is current
-        shell: bash
-        run: |
-          set -u
-          week=$(curl -sS -L --max-time 25 "$SITE/" 2>/dev/null | grep -o 'Week of [A-Z][a-z]* [0-9]\{1,2\}, [0-9]\{4\}' | head -n1 | sed 's/^Week of //')
-          : > stale.txt
-          if [ -n "$week" ]; then
-            age=$(( ( $(date +%s) - $(date -d "$week" +%s) ) / 86400 ))
-            if [ "$age" -gt 8 ]; then echo "The weekly update on the site still says Week of $week ($age days ago)." > stale.txt; fi
+          if [ "$down" = true ] || { [ "$stale" = true ] && [ "$age" -ge 30 ]; }; then
+            if [ "$down" = true ]; then echo "The site was not answering."; else echo "The live site was not showing the newest files, published $age minutes ago."; fi
+            if gh api -X POST "repos/$GH_REPO/pages/builds" > /dev/null 2>&1; then
+              echo "Repair tried: asked GitHub to publish the site again." | tee repair.txt
+              sleep 180
+              look final.json final.txt
+            else
+              echo "Repair tried: could not ask GitHub to publish the site again." | tee repair.txt
+            fi
+            if [ "$(jq -r '.stale // false' final.json)" = true ] && [ "$(jq -r '.down // false' final.json)" != true ]; then
+              echo "- The live site is not showing the newest published files. Open the Actions tab and look at the latest \"pages build and deployment\" run." >> final.txt
+            fi
+            if [ ! -s final.txt ]; then
+              cat first.txt > healed.txt
+              if [ "$stale" = true ]; then echo "- The live site was not showing the newest published files." >> healed.txt; fi
+            fi
           fi
-          cat stale.txt
 
-      - name: Open or close the weekly update reminder
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const fs = require('fs');
-            const stale = fs.readFileSync('stale.txt', 'utf8').trim();
-            const { owner, repo } = context.repo;
-            const open = await github.rest.issues.listForRepo({ owner, repo, state: 'open', labels: 'weekly-update' });
-            if (stale && !open.data.length) {
-              await github.rest.issues.create({ owner, repo, labels: ['weekly-update'],
-                title: 'Time for the weekly update on kensingtonaapac.org',
-                body: `@${owner} ${stale}\n\nThe README has the steps. This reminder closes itself after the update goes live.` });
-            } else if (!stale && open.data.length) {
-              for (const i of open.data) {
-                await github.rest.issues.update({ owner, repo, issue_number: i.number, state: 'closed' });
-              }
-            }
+          if [ -s final.txt ]; then echo "Problems:"; cat final.txt; else echo "All checks passed."; fi
 
       - name: Open, update or close the alert
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const fs = require('fs');
-            const problems = fs.readFileSync('problems.txt', 'utf8').trim();
-            const { owner, repo } = context.repo;
-            const when = new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }) + ' Pacific';
-            const open = await github.rest.issues.listForRepo({ owner, repo, state: 'open', labels: 'site-check' });
-            const issue = open.data[0];
-            if (problems) {
-              const body = `Checked ${when}.\n\n${problems}\n\nThis issue closes itself when a later check passes.`;
-              if (!issue) {
-                await github.rest.issues.create({ owner, repo, labels: ['site-check'],
-                  title: 'kensingtonaapac.org needs attention',
-                  body: `@${owner} the hourly site check found a problem.\n\n${body}` });
-              } else {
-                const comments = await github.rest.issues.listComments({ owner, repo, issue_number: issue.number, per_page: 100 });
-                const last = comments.data.length ? comments.data[comments.data.length - 1].body : issue.body;
-                if (!last.includes(problems)) {
-                  await github.rest.issues.createComment({ owner, repo, issue_number: issue.number, body });
-                }
-              }
-              core.setFailed(problems);
-            } else if (issue) {
-              await github.rest.issues.createComment({ owner, repo, issue_number: issue.number, body: `Back to normal as of ${when}.` });
-              await github.rest.issues.update({ owner, repo, issue_number: issue.number, state: 'closed' });
-            }
+        shell: bash
+        run: |
+          set +e -u
+          owner="${GH_REPO%%/*}"
+          when="$(TZ=America/Los_Angeles date '+%b %-d at %-I:%M %p') Pacific"
+          problems="$(cat final.txt)"
+          repair="$(cat repair.txt)"
+          healed="$(cat healed.txt)"
+          gh label create site-check --color D93F0B --description "Opened by the site check" --force > /dev/null 2>&1 || true
+          issue="$(gh issue list --state open --label site-check --json number --jq '.[0].number // empty')"
 
-  links:
+          if [ -n "$problems" ]; then
+            body="Checked $when."$'\n\n'"$problems"
+            if [ -n "$repair" ]; then body="$body"$'\n\n'"$repair It did not fix this."; fi
+            body="$body"$'\n\n'"The README has a section called \"If something goes wrong\". This issue closes itself when a later check passes."
+            if [ -z "$issue" ]; then
+              gh issue create --title "kensingtonaapac.org needs attention" --label site-check --body "@$owner the site check found a problem."$'\n\n'"$body" || echo "Could not open the alert."
+            else
+              last="$(gh issue view "$issue" --json body,comments --jq '(.comments | last | .body) // .body')"
+              if [[ "$last" != *"$problems"* ]]; then gh issue comment "$issue" --body "$body"; fi
+            fi
+            exit 1
+          fi
+
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "Back to normal as of $when."
+            gh issue close "$issue"
+          elif [ -n "$healed" ]; then
+            url="$(gh issue create --title "kensingtonaapac.org had a short problem and recovered" --label site-check --body "@$owner no action is needed. This is only a record."$'\n\n'"What the check saw at first:"$'\n\n'"$healed"$'\n\n'"$repair The next look, three minutes later, found everything working ($when).")"
+            if [ -n "$url" ]; then gh issue close "$url"; fi
+          fi
+
+      - name: Remind when the weekly update is due
+        if: always()
+        shell: bash
+        run: |
+          set +e -u
+          owner="${GH_REPO%%/*}"
+          week="$(grep -o 'Week of [A-Z][a-z]* [0-9]\{1,2\}, [0-9]\{4\}' repo/index.html | head -n1 | sed 's/^Week of //')"
+          stale=""
+          if [ -n "$week" ]; then
+            age=$(( ( $(date +%s) - $(date -d "$week" +%s) ) / 86400 ))
+            if [ "$age" -gt 8 ]; then stale="The weekly update on the site still says Week of $week ($age days ago)."; fi
+          fi
+          issue="$(gh issue list --state open --label weekly-update --json number --jq '.[0].number // empty')"
+          if [ -n "$stale" ] && [ -z "$issue" ]; then
+            gh label create weekly-update --color 0E8A16 --description "Reminder to post the weekly update" --force > /dev/null 2>&1 || true
+            gh issue create --title "Time for the weekly update on kensingtonaapac.org" --label weekly-update --body "@$owner $stale"$'\n\n'"The README has the steps. This reminder closes itself after the update goes live."
+          elif [ -z "$stale" ] && [ -n "$issue" ]; then
+            gh issue close "$issue"
+          fi
+
+      - name: Practice run
+        if: github.event_name == 'workflow_dispatch' && inputs.practice
+        shell: bash
+        run: |
+          set +e -u
+          owner="${GH_REPO%%/*}"
+          when="$(TZ=America/Los_Angeles date '+%b %-d at %-I:%M %p') Pacific"
+          ok=1
+          try() { if "${@:2}" > /dev/null 2>&1; then echo "Worked: $1" | tee -a "$GITHUB_STEP_SUMMARY"; else echo "FAILED: $1" | tee -a "$GITHUB_STEP_SUMMARY"; ok=0; fi; }
+          try "ask GitHub to publish the site again" gh api -X POST "repos/$GH_REPO/pages/builds"
+          try "keep this schedule switched on" gh api -X PUT "repos/$GH_REPO/actions/workflows/site-check.yml/enable"
+          gh label create site-check --color D93F0B --description "Opened by the site check" --force > /dev/null 2>&1 || true
+          if url="$(gh issue create --title "Practice alert from the kensingtonaapac.org site check" --label site-check --body "@$owner this is a practice alert, sent $when. Nothing is wrong with the site."$'\n\n'"A real alert looks like this one and lists what is wrong. If this reached your email, alerts are working.")"; then
+            gh issue close "$url" > /dev/null
+            echo "Worked: open and close an alert ($url)" | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo "FAILED: open an alert" | tee -a "$GITHUB_STEP_SUMMARY"; ok=0
+          fi
+          [ "$ok" = 1 ]
+
+  weekly:
+    name: Monday upkeep
     if: github.event_name == 'workflow_dispatch' || github.event.schedule == '41 15 * * 1'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check every outside link on the home page
+      - name: Keep the schedule switched on
         shell: bash
         run: |
-          set -u
-          page=$(curl -sS -L --max-time 25 https://kensingtonaapac.org/)
+          set +e -u
+          # GitHub switches off schedules in repositories that go quiet for 60 days.
+          # Asking for the schedule to be on resets that clock.
+          if gh api -X PUT "repos/$GH_REPO/actions/workflows/site-check.yml/enable" > /dev/null; then
+            echo "The schedule is on."
+          else
+            echo "Could not confirm the schedule is on."; exit 1
+          fi
+          off="$(gh api "repos/$GH_REPO/actions/workflows" --jq '.workflows[] | select(.state != "active") | .name')"
+          if [ -n "$off" ]; then echo "Switched off: $off"; exit 1; fi
+
+      - name: Check every outside link on the home page
+        if: always()
+        shell: bash
+        run: |
+          set +e -u
+          owner="${GH_REPO%%/*}"
+          page="$(curl -sS -L --max-time 25 "$SITE/" || true)"
           broken=""
           while read -r url; do
             [ -z "$url" ] && continue
             case "$url" in https://calendar.google.com/*) continue ;; esac
-            code=$(curl -sS -o /dev/null -L --max-time 25 -A "Mozilla/5.0 (site link check)" -w '%{http_code}' "$url" 2>/dev/null || true)
+            code="$(curl -sS -o /dev/null -L --max-time 25 -A "Mozilla/5.0 (site link check)" -w '%{http_code}' "$url" 2> /dev/null || true)"
             [ -n "$code" ] || code=000
             case "$code" in 2??|3??|401|403|405|429) ;; *) broken="${broken}- ${url} (status ${code})"$'\n' ;; esac
-          done < <(grep -o 'href="https://[^"]*"' <<<"$page" | sed 's/^href="//; s/"$//; s/&amp;/\&/g' | sort -u)
-          printf '%s' "$broken" > broken.txt
-          if [ -s broken.txt ]; then cat broken.txt; else echo "All outside links answered."; fi
-
-      - name: Report broken links
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const fs = require('fs');
-            const broken = fs.readFileSync('broken.txt', 'utf8').trim();
-            const { owner, repo } = context.repo;
-            const open = await github.rest.issues.listForRepo({ owner, repo, state: 'open', labels: 'link-check' });
-            if (broken && !open.data.length) {
-              await github.rest.issues.create({ owner, repo, labels: ['link-check'],
-                title: 'Some links on kensingtonaapac.org may be broken',
-                body: `@${owner} the weekly link check could not open these links:\n\n${broken}\n\nSome sites block automated checks, so open each one in a browser before changing anything. Close this issue when done.` });
-            }
+          done < <(grep -o 'href="https://[^"]*"' <<< "$page" | sed 's/^href="//; s/"$//; s/&amp;/\&/g' | sort -u)
+          if [ -z "$broken" ]; then echo "All outside links answered."; exit 0; fi
+          echo "$broken"
+          issue="$(gh issue list --state open --label link-check --json number --jq '.[0].number // empty')"
+          if [ -z "$issue" ]; then
+            gh label create link-check --color FBCA04 --description "Opened by the weekly link check" --force > /dev/null 2>&1 || true
+            gh issue create --title "Some links on kensingtonaapac.org may be broken" --label link-check --body "@$owner the weekly link check could not open these links:"$'\n\n'"$broken"$'\n'"Some sites block automated checks, so open each one in a browser before changing anything. Close this issue when done."
+          fi
